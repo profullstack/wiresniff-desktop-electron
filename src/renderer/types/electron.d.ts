@@ -93,10 +93,37 @@ export interface SseAPI {
 }
 
 export interface SyncAPI {
+  // Basic sync controls
   start: () => Promise<void>;
   stop: () => Promise<void>;
   getStatus: () => Promise<SyncStatus>;
   onStatusChange: (callback: (status: SyncStatus) => void) => () => void;
+  
+  // Capture session sync (Feature 1)
+  syncCaptures?: () => Promise<void>;
+  saveCapture?: (session: CaptureSession) => Promise<void>;
+  getCaptures?: (workspaceId?: string) => Promise<CaptureSession[]>;
+  deleteCapture?: (id: string) => Promise<void>;
+  shareCapture?: (id: string, workspaceId: string) => Promise<void>;
+  
+  // Replay session sync (Feature 1)
+  syncReplays?: () => Promise<void>;
+  saveReplay?: (session: ReplaySession) => Promise<void>;
+  getReplays?: (captureSessionId?: string) => Promise<ReplaySession[]>;
+  deleteReplay?: (id: string) => Promise<void>;
+  
+  // Diff result sync (Feature 1)
+  syncDiffs?: () => Promise<void>;
+  saveDiff?: (diff: DiffResult) => Promise<void>;
+  getDiffs?: (workspaceId?: string) => Promise<DiffResult[]>;
+  deleteDiff?: (id: string) => Promise<void>;
+  
+  // Traffic session sync (Feature 6)
+  syncTrafficSessions?: () => Promise<void>;
+  saveTrafficSession?: (session: TrafficSession) => Promise<void>;
+  getTrafficSessions?: (workspaceId?: string) => Promise<TrafficSession[]>;
+  deleteTrafficSession?: (id: string) => Promise<void>;
+  shareTrafficSession?: (id: string, workspaceId: string) => Promise<void>;
 }
 
 export interface ImportExportAPI {
@@ -112,6 +139,12 @@ export interface DialogAPI {
   saveFile: (options?: SaveFileOptions) => Promise<string | null>;
 }
 
+export interface SecretsAPI {
+  encryptString: (value: string) => Promise<string>;
+  decryptString: (encrypted: string) => Promise<string>;
+  isEncryptionAvailable: () => boolean;
+}
+
 export interface ElectronAPI {
   window: WindowAPI;
   theme: ThemeAPI;
@@ -124,6 +157,7 @@ export interface ElectronAPI {
   sync: SyncAPI;
   importExport: ImportExportAPI;
   dialog: DialogAPI;
+  secrets: SecretsAPI;
   on: (channel: string, callback: (...args: unknown[]) => void) => () => void;
   off: (channel: string, callback: (...args: unknown[]) => void) => void;
 }
@@ -299,6 +333,117 @@ export interface SyncStatus {
   lastSyncedAt?: string;
   pendingChanges: number;
   error?: string;
+}
+
+// Capture session types (Feature 1)
+export interface CaptureSession {
+  id: string;
+  name: string;
+  description?: string;
+  requests: CapturedRequest[];
+  createdAt: string;
+  updatedAt: string;
+  userId: string;
+  workspaceId?: string;
+  isShared?: boolean;
+}
+
+export interface CapturedRequest {
+  id: string;
+  sessionId: string;
+  method: string;
+  url: string;
+  headers: Record<string, string>;
+  body?: string;
+  timestamp: string;
+  response?: CapturedResponse;
+}
+
+export interface CapturedResponse {
+  status: number;
+  statusText: string;
+  headers: Record<string, string>;
+  body?: string;
+  timing?: {
+    dns: number;
+    connect: number;
+    ttfb: number;
+    download: number;
+    total: number;
+  };
+}
+
+// Replay session types (Feature 1)
+export interface ReplaySession {
+  id: string;
+  captureSessionId: string;
+  name: string;
+  targetEnvironment: string;
+  results: ReplayResult[];
+  createdAt: string;
+  userId: string;
+  workspaceId?: string;
+}
+
+export interface ReplayResult {
+  id: string;
+  replaySessionId: string;
+  originalRequestId: string;
+  response: CapturedResponse;
+  timestamp: string;
+}
+
+// Diff result types (Feature 1)
+export interface DiffResult {
+  id: string;
+  name: string;
+  originalSessionId: string;
+  replaySessionId: string;
+  diffs: RequestDiff[];
+  createdAt: string;
+  userId: string;
+  workspaceId?: string;
+}
+
+export interface RequestDiff {
+  requestId: string;
+  statusDiff?: { original: number; replay: number };
+  headerDiffs: Array<{ key: string; original?: string; replay?: string; type: 'added' | 'removed' | 'changed' }>;
+  bodyDiff?: { type: 'json' | 'text'; changes: unknown };
+  timingDiff?: { original: number; replay: number; percentChange: number };
+}
+
+// Traffic session types (Feature 6)
+export interface TrafficSession {
+  id: string;
+  name: string;
+  description?: string;
+  filters: TrafficFilter[];
+  packets: TrafficPacket[];
+  startedAt: string;
+  endedAt?: string;
+  userId: string;
+  workspaceId?: string;
+  isShared?: boolean;
+}
+
+export interface TrafficFilter {
+  type: 'domain' | 'method' | 'status' | 'header' | 'body';
+  value: string;
+  operator: 'equals' | 'contains' | 'regex' | 'startsWith' | 'endsWith';
+}
+
+export interface TrafficPacket {
+  id: string;
+  sessionId: string;
+  timestamp: string;
+  direction: 'request' | 'response';
+  protocol: 'http' | 'https' | 'ws' | 'wss';
+  method?: string;
+  url: string;
+  headers: Record<string, string>;
+  body?: string;
+  status?: number;
 }
 
 // Import/Export types

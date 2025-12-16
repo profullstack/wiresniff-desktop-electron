@@ -44,6 +44,8 @@
   "devDependencies": {
     "@eslint/js": "^9.17.0",
     "@playwright/test": "^1.40.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.1",
     "@types/better-sqlite3": "^7.6.8",
     "@types/eventsource": "^1.1.15",
     "@types/node": "^20.10.6",
@@ -63,6 +65,7 @@
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^5.1.0",
     "globals": "^15.14.0",
+    "jsdom": "^27.3.0",
     "postcss": "^8.4.33",
     "prettier": "^3.1.1",
     "tailwindcss": "^3.4.0",

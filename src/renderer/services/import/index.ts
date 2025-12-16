@@ -7,16 +7,41 @@
 export { parsePostmanCollection, parsePostmanEnvironment } from './postmanParser';
 export { parseOpenApiSpec } from './openApiParser';
 export { parseCurlCommand, parseMultipleCurlCommands, generateCurlCommand } from './curlParser';
+export { parseInsomniaExport, InsomniaParser } from './insomniaParser';
+export {
+  EnvVarMapper,
+  mapEnvironmentVariables,
+  detectVariableSyntax,
+  convertVariableSyntax,
+} from './envVarMapper';
 
 // Re-export types
 export type { default as PostmanParser } from './postmanParser';
 export type { default as OpenApiParser } from './openApiParser';
 export type { default as CurlParser } from './curlParser';
+export type {
+  InsomniaExport,
+  InsomniaResource,
+  InsomniaRequest,
+  InsomniaEnvironment,
+  ParsedCollection,
+  ParsedRequest,
+  ParsedEnvironment,
+  ImportWarning,
+  ParseResult,
+} from './insomniaParser';
+export type {
+  VariableSyntax,
+  VariableMapping,
+  MappedEnvironment,
+  MappingWarning,
+  MappingResult,
+} from './envVarMapper';
 
 /**
  * Detect import format from file content
  */
-export function detectImportFormat(content: string): 'postman' | 'openapi' | 'curl' | 'unknown' {
+export function detectImportFormat(content: string): 'postman' | 'insomnia' | 'openapi' | 'curl' | 'har' | 'unknown' {
   const trimmed = content.trim();
 
   // Check for cURL command
@@ -28,6 +53,11 @@ export function detectImportFormat(content: string): 'postman' | 'openapi' | 'cu
   try {
     const json = JSON.parse(trimmed);
 
+    // Check for Insomnia export
+    if (json._type === 'export' && json.__export_format) {
+      return 'insomnia';
+    }
+
     // Check for Postman collection
     if (json.info?.schema?.includes('postman')) {
       return 'postman';
@@ -36,6 +66,11 @@ export function detectImportFormat(content: string): 'postman' | 'openapi' | 'cu
     // Check for Postman environment
     if (json.name && json.values && Array.isArray(json.values)) {
       return 'postman';
+    }
+
+    // Check for HAR format
+    if (json.log?.version && json.log?.entries) {
+      return 'har';
     }
 
     // Check for OpenAPI 3.x
@@ -66,15 +101,22 @@ export function detectImportFormat(content: string): 'postman' | 'openapi' | 'cu
 }
 
 /**
+ * Import result with warnings
+ */
+export interface ImportResult {
+  type: 'collection' | 'environment' | 'request' | 'requests';
+  data: unknown;
+  warnings?: ImportWarning[];
+  environments?: ParsedEnvironment[];
+}
+
+/**
  * Import file and return parsed data
  */
 export async function importFile(
   content: string,
-  format?: 'postman' | 'openapi' | 'curl'
-): Promise<{
-  type: 'collection' | 'environment' | 'request' | 'requests';
-  data: unknown;
-}> {
+  format?: 'postman' | 'insomnia' | 'openapi' | 'curl' | 'har'
+): Promise<ImportResult> {
   const detectedFormat = format || detectImportFormat(content);
 
   switch (detectedFormat) {
@@ -95,6 +137,18 @@ export async function importFile(
       return {
         type: 'collection',
         data: parsePostmanCollection(content),
+      };
+    }
+
+    case 'insomnia': {
+      const { parseInsomniaExport } = await import('./insomniaParser');
+      const result = parseInsomniaExport(content);
+      
+      return {
+        type: 'collection',
+        data: result.collections,
+        warnings: result.warnings,
+        environments: result.environments,
       };
     }
 
@@ -125,7 +179,55 @@ export async function importFile(
       };
     }
 
+    case 'har': {
+      // HAR import not yet implemented
+      throw new Error('HAR import is not yet supported. Coming soon!');
+    }
+
     default:
       throw new Error('Unable to detect import format. Please specify the format explicitly.');
   }
+}
+
+/**
+ * Get supported import formats
+ */
+export function getSupportedFormats(): Array<{
+  id: string;
+  name: string;
+  description: string;
+  extensions: string[];
+}> {
+  return [
+    {
+      id: 'postman',
+      name: 'Postman',
+      description: 'Import Postman collections and environments',
+      extensions: ['.json', '.postman_collection.json', '.postman_environment.json'],
+    },
+    {
+      id: 'insomnia',
+      name: 'Insomnia',
+      description: 'Import Insomnia workspaces and environments',
+      extensions: ['.json', '.yaml', '.yml'],
+    },
+    {
+      id: 'openapi',
+      name: 'OpenAPI / Swagger',
+      description: 'Import OpenAPI 3.x or Swagger 2.0 specifications',
+      extensions: ['.json', '.yaml', '.yml'],
+    },
+    {
+      id: 'curl',
+      name: 'cURL',
+      description: 'Import cURL commands',
+      extensions: ['.txt', '.sh'],
+    },
+    {
+      id: 'har',
+      name: 'HAR',
+      description: 'Import HTTP Archive files (coming soon)',
+      extensions: ['.har'],
+    },
+  ];
 }

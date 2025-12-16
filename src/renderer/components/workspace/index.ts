@@ -1,16 +1,15 @@
 /**
- * Workspace component exports
+ * Workspace Components Module
  *
- * Central export point for workspace-related components
+ * Exports all workspace-related UI components for team collaboration,
+ * member management, and workspace selection.
  */
 
-export { TabBar } from './TabBar';
-export { KeyValueEditor } from './KeyValueEditor';
-export { RequestBuilder } from './RequestBuilder';
-export { ResponseViewer } from './ResponseViewer';
-export { WebSocketBuilder } from './WebSocketBuilder';
-export { GraphQLBuilder } from './GraphQLBuilder';
-export { SSEBuilder } from './SSEBuilder';
+export { WorkspaceSelector } from './WorkspaceSelector';
+export type { Workspace as WorkspaceSelectorWorkspace } from './WorkspaceSelector';
 
-// Re-export types from stores for convenience
-export type { KeyValuePair } from '../../stores';
+export { TeamMembersPanel } from './TeamMembersPanel';
+export type { WorkspaceMember } from './TeamMembersPanel';
+
+export { InviteModal } from './InviteModal';
+export type { WorkspaceRole } from './InviteModal';
