@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark-bg': '#1a1d23',
+                        'dark-surface': '#23262e',
+                        'dark-border': '#2d3139',
+                        'accent-blue': '#00d9ff',
+                        'accent-teal': '#14b8a6',
+                    },
+                    fontFamily: {
+                        'mono': ['JetBrains Mono', 'Fira Code', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <script> window.FontAwesomeConfig = { autoReplaceSvg: 'nest'};</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>::-webkit-scrollbar { display: none;} body { font-family: 'Inter', sans-serif; }</style>
+</head>
+<body class="bg-dark-bg text-gray-200 overflow-x-hidden">
+
+<div id="auth-screen" class="min-h-screen flex flex-col">
+    
+    <header id="header" class="border-b border-dark-border bg-dark-surface">
+        <div class="px-6 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 bg-gradient-to-br from-accent-blue to-accent-teal rounded flex items-center justify-center">
+                    <i class="fa-solid fa-bolt text-dark-bg text-sm"></i>
+                </div>
+                <span class="text-xl font-semibold tracking-tight">WireSniff</span>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <button class="text-gray-400 hover:text-gray-200 transition-colors">
+                    <i class="fa-regular fa-circle-question text-lg"></i>
+                </button>
+                <button class="text-gray-400 hover:text-gray-200 transition-colors">
+                    <i class="fa-solid fa-gear text-lg"></i>
+                </button>
+                <button class="px-3 py-1.5 rounded bg-dark-border hover:bg-gray-700 transition-colors text-sm flex items-center space-x-2">
+                    <i class="fa-solid fa-moon text-xs"></i>
+                    <span>Dark</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div id="main-layout" class="flex-1 flex">
+        
+        <aside id="sidebar" class="w-64 bg-dark-surface border-r border-dark-border flex flex-col">
+            <div class="p-6 border-b border-dark-border">
+                <button class="flex items-center space-x-2 text-gray-400 hover:text-gray-200 transition-colors mb-4">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span class="text-sm">Back to Workspace</span>
+                </button>
+                <h2 class="text-lg font-semibold text-gray-200">Settings</h2>
+            </div>
+            
+            <div class="flex-1 overflow-y-auto p-4">
+                <div class="space-y-6">
+                    
+                    <div id="general-settings">
+                        <h3 class="text-xs uppercase text-gray-500 font-medium mb-3 px-2">General</h3>
+                        <ul class="space-y-1">
+                            <li>
+                                <a href="#" class="text-gray-400 hover:text-gray-200 hover:bg-dark-border px-3 py-2 rounded block transition-colors">
+                                    Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-gray-400 hover:text-gray-200 hover:bg-dark-border px-3 py-2 rounded block transition-colors">
+                                    Preferences
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-gray-400 hover:text-gray-200 hover:bg-dark-border px-3 py-2 rounded block transition-colors">
+                                    Keyboard Shortcuts
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div id="workspace-settings">
+                        <h3 class="text-xs uppercase text-gray-500 font-medium mb-3 px-2">Workspace</h3>
+                        <ul class="space-y-1">
+                            <li>
+                                <a href="#" class="text-gray-400 hover:text-gray-200 hover:bg-dark-border px-3 py-2 rounded block transition-colors">
+                                    General
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="bg-accent-blue/10 text-accent-blue border-l-2 border-accent-blue px-3 py-2 rounded block">
+                                    Authentication
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-gray-400 hover:text-gray-200 hover:bg-dark-border px-3 py-2 rounded block transition-colors">
+                                    Environments
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-gray-400 hover:text-gray-200 hover:bg-dark-border px-3 py-2 rounded block transition-colors">
+                                    API Keys
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-gray-400 hover:text-gray-200 hover:bg-dark-border px-3 py-2 rounded block transition-colors">
+                                    Integrations
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div id="security-settings">
+                        <h3 class="text-xs uppercase text-gray-500 font-medium mb-3 px-2">Security</h3>
+                        <ul class="space-y-1">
+                            <li>
+                                <a href="#" class="text-gray-400 hover:text-gray-200 hover:bg-dark-border px-3 py-2 rounded block transition-colors">
+                                    SSL Certificates
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-gray-400 hover:text-gray-200 hover:bg-dark-border px-3 py-2 rounded block transition-colors">
+                                    Proxy Settings
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-gray-400 hover:text-gray-200 hover:bg-dark-border px-3 py-2 rounded block transition-colors">
+                                    Security Log
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </aside>
+
+        <main id="main-content" class="flex-1 overflow-y-auto">
+            <div class="max-w-4xl mx-auto p-8">
+                
+                <div id="page-header" class="mb-8">
+                    <h1 class="text-2xl font-bold text-gray-100 mb-2">Authentication Configuration</h1>
+                    <p class="text-gray-400">Configure authentication methods for your API requests</p>
+                </div>
+
+                <div id="auth-methods-section" class="space-y-6">
+                    
+                    <div id="auth-type-none" class="bg-dark-surface border border-dark-border rounded-lg p-6 hover:border-accent-blue/30 transition-all">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-gray-600/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fa-solid fa-ban text-gray-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-200 mb-1">No Authentication</h3>
+                                    <p class="text-sm text-gray-400">Send requests without authentication credentials</p>
+                                </div>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="radio" name="auth-type" class="sr-only peer" />
+                                <div class="w-5 h-5 border-2 border-gray-600 rounded-full peer-checked:border-accent-blue peer-checked:bg-accent-blue transition-all"></div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="auth-type-api-key" class="bg-dark-surface border border-accent-blue/50 rounded-lg p-6">
+                        <div class="flex items-start justify-between mb-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-accent-blue/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fa-solid fa-key text-accent-blue text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-200 mb-1">API Key</h3>
+                                    <p class="text-sm text-gray-400">Add an API key to your request headers or query parameters</p>
+                                </div>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="radio" name="auth-type" class="sr-only peer" checked />
+                                <div class="w-5 h-5 border-2 border-accent-blue rounded-full bg-accent-blue transition-all flex items-center justify-center">
+                                    <div class="w-2 h-2 bg-dark-bg rounded-full"></div>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <div id="api-key-config" class="space-y-4 pl-16">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Key Name</label>
+                                <input type="text" placeholder="e.g., X-API-Key" class="w-full bg-dark-bg border border-dark-border rounded-lg px-4 py-2.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-accent-blue transition-colors" />
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Value</label>
+                                <div class="relative">
+                                    <input type="password" placeholder="Enter your API key" class="w-full bg-dark-bg border border-dark-border rounded-lg px-4 py-2.5 pr-10 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-accent-blue transition-colors font-mono text-sm" />
+                                    <button class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-200 transition-colors">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Add to</label>
+                                <div class="flex space-x-3">
+                                    <button class="flex-1 px-4 py-2.5 bg-accent-blue/20 border border-accent-blue text-accent-blue rounded-lg font-medium transition-colors">
+                                        Header
+                                    </button>
+                                    <button class="flex-1 px-4 py-2.5 bg-dark-bg border border-dark-border text-gray-400 hover:text-gray-200 hover:border-gray-600 rounded-lg font-medium transition-colors">
+                                        Query Params
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="auth-type-bearer" class="bg-dark-surface border border-dark-border rounded-lg p-6 hover:border-accent-blue/30 transition-all">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fa-solid fa-shield-halved text-purple-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-200 mb-1">Bearer Token</h3>
+                                    <p class="text-sm text-gray-400">Use a bearer token for authentication (JWT, OAuth 2.0)</p>
+                                </div>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="radio" name="auth-type" class="sr-only peer" />
+                                <div class="w-5 h-5 border-2 border-gray-600 rounded-full peer-checked:border-accent-blue peer-checked:bg-accent-blue transition-all"></div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="auth-type-oauth" class="bg-dark-surface border border-dark-border rounded-lg p-6 hover:border-accent-blue/30 transition-all">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fa-solid fa-lock text-green-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-200 mb-1">OAuth 2.0</h3>
+                                    <p class="text-sm text-gray-400">Configure OAuth 2.0 flow with authorization and token endpoints</p>
+                                </div>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="radio" name="auth-type" class="sr-only peer" />
+                                <div class="w-5 h-5 border-2 border-gray-600 rounded-full peer-checked:border-accent-blue peer-checked:bg-accent-blue transition-all"></div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="auth-type-basic" class="bg-dark-surface border border-dark-border rounded-lg p-6 hover:border-accent-blue/30 transition-all">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fa-solid fa-user-lock text-orange-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-200 mb-1">Basic Authentication</h3>
+                                    <p class="text-sm text-gray-400">Use username and password for HTTP Basic Auth</p>
+                                </div>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="radio" name="auth-type" class="sr-only peer" />
+                                <div class="w-5 h-5 border-2 border-gray-600 rounded-full peer-checked:border-accent-blue peer-checked:bg-accent-blue transition-all"></div>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="token-preview-section" class="mt-8 bg-dark-surface border border-dark-border rounded-lg p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-gray-200">Token Preview</h3>
+                        <span class="px-3 py-1 bg-green-500/20 text-green-400 text-xs rounded-full font-medium">
+                            <i class="fa-solid fa-circle-check mr-1"></i>
+                            Valid
+                        </span>
+                    </div>
+                    
+                    <div class="bg-dark-bg border border-dark-border rounded-lg p-4 mb-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs text-gray-500 uppercase font-medium">Authorization Header</span>
+                            <button class="text-gray-400 hover:text-accent-blue transition-colors text-sm">
+                                <i class="fa-solid fa-copy mr-1"></i>
+                                Copy
+                            </button>
+                        </div>
+                        <code class="text-sm text-gray-300 font-mono break-all">X-API-Key: ••••••••••••••••••••••••••••</code>
+                    </div>
+                    
+                    <div class="flex items-center justify-between text-sm">
+                        <div class="flex items-center space-x-4">
+                            <div class="flex items-center space-x-2 text-gray-400">
+                                <i class="fa-regular fa-clock"></i>
+                                <span>Expires in 29 days</span>
+                            </div>
+                            <div class="flex items-center space-x-2 text-gray-400">
+                                <i class="fa-solid fa-calendar"></i>
+                                <span>Created Jan 15, 2025</span>
+                            </div>
+                        </div>
+                        <button class="text-accent-teal hover:text-accent-blue transition-colors font-medium">
+                            Refresh Token
+                        </button>
+                    </div>
+                </div>
+
+                <div id="action-buttons" class="mt-8 flex items-center justify-between">
+                    <button class="text-gray-400 hover:text-gray-200 transition-colors flex items-center space-x-2">
+                        <i class="fa-solid fa-rotate-left"></i>
+                        <span>Reset to Default</span>
+                    </button>
+                    
+                    <div class="flex items-center space-x-3">
+                        <button class="px-6 py-2.5 bg-dark-border hover:bg-gray-700 text-gray-200 rounded-lg font-medium transition-colors">
+                            Cancel
+                        </button>
+                        <button class="px-6 py-2.5 bg-accent-blue hover:bg-cyan-400 text-dark-bg rounded-lg font-semibold transition-all shadow-lg shadow-accent-blue/30 hover:shadow-accent-blue/50">
+                            Save Configuration
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+    </div>
+
+    <footer id="footer" class="border-t border-dark-border bg-dark-surface">
+        <div class="px-6 py-4 flex items-center justify-between text-sm">
+            <div class="flex items-center space-x-6 text-gray-500">
+                <span>Version 1.0.0</span>
+                <a href="#" class="hover:text-accent-blue transition-colors">Release Notes</a>
+                <a href="#" class="hover:text-accent-blue transition-colors">Privacy</a>
+            </div>
+            <div class="flex items-center space-x-4 text-gray-500">
+                <a href="#" class="hover:text-accent-blue transition-colors">
+                    <i class="fa-brands fa-github text-lg"></i>
+                </a>
+                <a href="#" class="hover:text-accent-blue transition-colors">
+                    <i class="fa-brands fa-twitter text-lg"></i>
+                </a>
+                <a href="#" class="hover:text-accent-blue transition-colors">
+                    <i class="fa-brands fa-discord text-lg"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+</body>
+</html>

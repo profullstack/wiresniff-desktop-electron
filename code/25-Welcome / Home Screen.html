@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ws-dark': '#1a1d23',
+                        'ws-darker': '#13151a',
+                        'ws-accent': '#00d4ff',
+                        'ws-accent-hover': '#00b8e6',
+                        'ws-border': '#2a2d35',
+                        'ws-surface': '#21242b',
+                    },
+                    fontFamily: {
+                        'mono': ['Monaco', 'Consolas', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <script> window.FontAwesomeConfig = { autoReplaceSvg: 'nest'};</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        ::-webkit-scrollbar { display: none;}
+        body { font-family: 'Inter', sans-serif; }
+        .code-font { font-family: 'Monaco', 'Consolas', monospace; }
+    </style>
+</head>
+<body class="bg-ws-darker text-gray-200 antialiased">
+
+<div id="welcome-screen" class="min-h-screen flex flex-col">
+    
+    <header id="header" class="bg-ws-dark border-b border-ws-border px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 bg-gradient-to-br from-ws-accent to-blue-500 rounded flex items-center justify-center">
+                <i class="fas fa-network-wired text-ws-darker text-sm"></i>
+            </div>
+            <span class="text-xl font-bold tracking-tight">WireSniff</span>
+        </div>
+        
+        <div class="flex items-center space-x-4">
+            <button class="text-gray-400 hover:text-gray-200 transition-colors">
+                <i class="far fa-question-circle text-lg"></i>
+            </button>
+            <button class="text-gray-400 hover:text-gray-200 transition-colors">
+                <i class="fas fa-cog text-lg"></i>
+            </button>
+            <div class="flex items-center bg-ws-surface rounded-md p-1">
+                <button class="px-3 py-1 rounded text-sm bg-ws-accent text-ws-darker font-medium">
+                    <i class="fas fa-moon text-xs mr-1"></i>
+                    Dark
+                </button>
+                <button class="px-3 py-1 rounded text-sm text-gray-400 hover:text-gray-200">
+                    <i class="fas fa-sun text-xs mr-1"></i>
+                    Light
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" class="flex-1 flex items-center justify-center px-8">
+        <div class="max-w-5xl w-full">
+            
+            <div id="hero-section" class="text-center mb-16">
+                <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-ws-accent to-blue-500 rounded-2xl mb-6 shadow-lg shadow-ws-accent/20">
+                    <i class="fas fa-network-wired text-ws-darker text-3xl"></i>
+                </div>
+                <h1 class="text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+                    WireSniff
+                </h1>
+                <p class="text-xl text-gray-400 italic font-light">
+                    Inspect every wire.
+                </p>
+            </div>
+
+            <div id="action-buttons" class="flex items-center justify-center space-x-4 mb-16">
+                <button class="group bg-ws-accent hover:bg-ws-accent-hover text-ws-darker font-semibold px-8 py-4 rounded-lg transition-all transform hover:scale-105 shadow-lg shadow-ws-accent/30">
+                    <i class="fas fa-plus mr-2"></i>
+                    New Request
+                </button>
+                <button class="bg-ws-surface hover:bg-ws-dark text-gray-200 font-medium px-8 py-4 rounded-lg border border-ws-border transition-all">
+                    <i class="fas fa-folder-open mr-2"></i>
+                    Open Collection
+                </button>
+                <button class="bg-ws-surface hover:bg-ws-dark text-gray-200 font-medium px-8 py-4 rounded-lg border border-ws-border transition-all">
+                    <i class="fas fa-file-import mr-2"></i>
+                    Import
+                </button>
+            </div>
+
+            <div id="recent-projects" class="bg-ws-dark rounded-xl border border-ws-border p-6 mb-8">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-lg font-semibold flex items-center">
+                        <i class="far fa-clock text-ws-accent mr-3"></i>
+                        Recent Projects
+                    </h2>
+                    <button class="text-sm text-gray-400 hover:text-ws-accent transition-colors">
+                        View All
+                        <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                    </button>
+                </div>
+
+                <div id="recent-list" class="space-y-2">
+                    <div class="bg-ws-surface hover:bg-ws-darker border border-ws-border rounded-lg p-4 cursor-pointer transition-all group">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-folder text-white text-sm"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-medium text-gray-200 group-hover:text-ws-accent transition-colors">E-Commerce API Collection</h3>
+                                    <p class="text-sm text-gray-500">Last opened 2 hours ago</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="text-xs px-3 py-1 bg-green-500/20 text-green-400 rounded-full">
+                                    <i class="fas fa-check-circle mr-1"></i>
+                                    Active
+                                </span>
+                                <span class="text-sm text-gray-500">24 requests</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-ws-surface hover:bg-ws-darker border border-ws-border rounded-lg p-4 cursor-pointer transition-all group">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-folder text-white text-sm"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-medium text-gray-200 group-hover:text-ws-accent transition-colors">Payment Gateway Integration</h3>
+                                    <p class="text-sm text-gray-500">Last opened yesterday</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="text-xs px-3 py-1 bg-gray-500/20 text-gray-400 rounded-full">
+                                    <i class="fas fa-circle mr-1"></i>
+                                    Idle
+                                </span>
+                                <span class="text-sm text-gray-500">18 requests</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-ws-surface hover:bg-ws-darker border border-ws-border rounded-lg p-4 cursor-pointer transition-all group">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-folder text-white text-sm"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-medium text-gray-200 group-hover:text-ws-accent transition-colors">User Authentication API</h3>
+                                    <p class="text-sm text-gray-500">Last opened 3 days ago</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="text-xs px-3 py-1 bg-gray-500/20 text-gray-400 rounded-full">
+                                    <i class="fas fa-circle mr-1"></i>
+                                    Idle
+                                </span>
+                                <span class="text-sm text-gray-500">12 requests</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-ws-surface hover:bg-ws-darker border border-ws-border rounded-lg p-4 cursor-pointer transition-all group">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-folder text-white text-sm"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-medium text-gray-200 group-hover:text-ws-accent transition-colors">GraphQL Social Network</h3>
+                                    <p class="text-sm text-gray-500">Last opened 5 days ago</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="text-xs px-3 py-1 bg-gray-500/20 text-gray-400 rounded-full">
+                                    <i class="fas fa-circle mr-1"></i>
+                                    Idle
+                                </span>
+                                <span class="text-sm text-gray-500">31 requests</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="quick-links" class="grid grid-cols-4 gap-4">
+                <div class="bg-ws-dark hover:bg-ws-surface border border-ws-border rounded-lg p-6 cursor-pointer transition-all group text-center">
+                    <div class="w-12 h-12 bg-ws-surface rounded-lg flex items-center justify-center mx-auto mb-3 group-hover:bg-ws-accent/10 transition-colors">
+                        <i class="fas fa-book text-ws-accent text-xl"></i>
+                    </div>
+                    <h3 class="font-medium text-gray-200 mb-1">Documentation</h3>
+                    <p class="text-xs text-gray-500">Learn WireSniff</p>
+                </div>
+
+                <div class="bg-ws-dark hover:bg-ws-surface border border-ws-border rounded-lg p-6 cursor-pointer transition-all group text-center">
+                    <div class="w-12 h-12 bg-ws-surface rounded-lg flex items-center justify-center mx-auto mb-3 group-hover:bg-ws-accent/10 transition-colors">
+                        <i class="fas fa-file-import text-ws-accent text-xl"></i>
+                    </div>
+                    <h3 class="font-medium text-gray-200 mb-1">Import Postman</h3>
+                    <p class="text-xs text-gray-500">Migrate collections</p>
+                </div>
+
+                <div class="bg-ws-dark hover:bg-ws-surface border border-ws-border rounded-lg p-6 cursor-pointer transition-all group text-center">
+                    <div class="w-12 h-12 bg-ws-surface rounded-lg flex items-center justify-center mx-auto mb-3 group-hover:bg-ws-accent/10 transition-colors">
+                        <i class="fas fa-file-code text-ws-accent text-xl"></i>
+                    </div>
+                    <h3 class="font-medium text-gray-200 mb-1">OpenAPI</h3>
+                    <p class="text-xs text-gray-500">Import specs</p>
+                </div>
+
+                <div class="bg-ws-dark hover:bg-ws-surface border border-ws-border rounded-lg p-6 cursor-pointer transition-all group text-center">
+                    <div class="w-12 h-12 bg-ws-surface rounded-lg flex items-center justify-center mx-auto mb-3 group-hover:bg-ws-accent/10 transition-colors">
+                        <i class="fas fa-keyboard text-ws-accent text-xl"></i>
+                    </div>
+                    <h3 class="font-medium text-gray-200 mb-1">Shortcuts</h3>
+                    <p class="text-xs text-gray-500">View hotkeys</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer id="footer" class="bg-ws-dark border-t border-ws-border px-6 py-4">
+        <div class="flex items-center justify-between text-sm text-gray-500">
+            <div class="flex items-center space-x-6">
+                <span>WireSniff v1.0.0</span>
+                <a href="#" class="hover:text-ws-accent transition-colors">Release Notes</a>
+                <a href="#" class="hover:text-ws-accent transition-colors">Community</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="flex items-center">
+                    <i class="fas fa-circle text-green-500 text-xs mr-2"></i>
+                    All systems operational
+                </span>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+</body>
+</html>

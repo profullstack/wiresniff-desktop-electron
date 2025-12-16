@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workspace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark-bg': '#1a1d23',
+                        'dark-surface': '#23262e',
+                        'dark-border': '#2d3139',
+                        'accent-blue': '#00d9ff',
+                        'accent-teal': '#14b8a6',
+                    },
+                    fontFamily: {
+                        'mono': ['JetBrains Mono', 'Fira Code', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <script> window.FontAwesomeConfig = { autoReplaceSvg: 'nest'};</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>::-webkit-scrollbar { display: none;} body { font-family: 'Inter', sans-serif; }</style>
+</head>
+<body class="bg-dark-bg text-gray-200 overflow-hidden">
+
+<div class="flex h-screen">
+    
+    <aside id="left-sidebar" class="w-16 bg-dark-surface border-r border-dark-border flex flex-col">
+        <div class="p-3 border-b border-dark-border">
+            <div class="w-10 h-10 bg-gradient-to-br from-accent-blue to-accent-teal rounded flex items-center justify-center">
+                <i class="fa-solid fa-bolt text-dark-bg text-lg"></i>
+            </div>
+        </div>
+        
+        <div class="flex-1 flex flex-col py-2">
+            <button class="w-full h-12 flex items-center justify-center text-gray-400 hover:text-accent-blue hover:bg-dark-border transition-all">
+                <i class="fa-solid fa-plus"></i>
+            </button>
+            <button class="w-full h-12 flex items-center justify-center text-accent-blue bg-dark-border">
+                <i class="fa-solid fa-folder"></i>
+            </button>
+            <button class="w-full h-12 flex items-center justify-center text-gray-400 hover:text-accent-blue hover:bg-dark-border transition-all">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+            </button>
+            <button class="w-full h-12 flex items-center justify-center text-gray-400 hover:text-accent-blue hover:bg-dark-border transition-all">
+                <i class="fa-solid fa-layer-group"></i>
+            </button>
+            <button class="w-full h-12 flex items-center justify-center text-gray-400 hover:text-accent-blue hover:bg-dark-border transition-all">
+                <i class="fa-solid fa-flask"></i>
+            </button>
+        </div>
+        
+        <div class="p-2 border-t border-dark-border">
+            <button class="w-full h-10 flex items-center justify-center text-gray-400 hover:text-accent-blue hover:bg-dark-border transition-all rounded">
+                <i class="fa-solid fa-gear"></i>
+            </button>
+        </div>
+    </aside>
+
+    <aside id="collections-sidebar" class="w-64 bg-dark-surface border-r border-dark-border flex flex-col">
+        <div class="p-4 border-b border-dark-border">
+            <div class="flex items-center justify-between mb-3">
+                <span class="text-sm font-semibold text-gray-300">Collections</span>
+                <div class="flex items-center space-x-1">
+                    <button class="w-7 h-7 flex items-center justify-center text-gray-400 hover:text-accent-blue hover:bg-dark-border rounded transition-all">
+                        <i class="fa-solid fa-search text-xs"></i>
+                    </button>
+                    <button class="w-7 h-7 flex items-center justify-center text-gray-400 hover:text-accent-blue hover:bg-dark-border rounded transition-all">
+                        <i class="fa-solid fa-ellipsis text-xs"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="relative">
+                <select class="w-full bg-dark-bg border border-dark-border rounded px-3 py-2 text-sm text-gray-300 appearance-none cursor-pointer focus:outline-none focus:border-accent-blue">
+                    <option>Production</option>
+                    <option>Staging</option>
+                    <option>Development</option>
+                    <option>Local</option>
+                </select>
+                <i class="fa-solid fa-chevron-down text-gray-500 text-xs absolute right-3 top-3 pointer-events-none"></i>
+            </div>
+        </div>
+
+        <div class="flex-1 overflow-y-auto px-2 py-2">
+            <div class="mb-1">
+                <div class="flex items-center px-2 py-2 hover:bg-dark-border rounded cursor-pointer group">
+                    <i class="fa-solid fa-caret-down text-gray-500 text-xs mr-2"></i>
+                    <i class="fa-solid fa-folder text-purple-400 mr-2"></i>
+                    <span class="text-sm text-gray-300 flex-1">E-commerce API</span>
+                    <span class="text-xs text-gray-600">23</span>
+                </div>
+                
+                <div class="ml-6">
+                    <div class="flex items-center px-2 py-2 hover:bg-dark-border rounded cursor-pointer group">
+                        <i class="fa-solid fa-caret-down text-gray-500 text-xs mr-2"></i>
+                        <i class="fa-solid fa-folder text-blue-400 mr-2 text-xs"></i>
+                        <span class="text-sm text-gray-400">Products</span>
+                    </div>
+                    
+                    <div class="ml-6">
+                        <div class="flex items-center px-2 py-2 bg-dark-border rounded cursor-pointer relative">
+                            <div class="w-1 h-6 bg-accent-blue absolute left-0 rounded-r"></div>
+                            <span class="px-2 py-0.5 bg-green-500/20 text-green-400 text-xs rounded font-mono mr-2">GET</span>
+                            <span class="text-sm text-gray-200 flex-1">List Products</span>
+                            <div class="w-2 h-2 bg-orange-400 rounded-full"></div>
+                        </div>
+                        
+                        <div class="flex items-center px-2 py-2 hover:bg-dark-border rounded cursor-pointer">
+                            <span class="px-2 py-0.5 bg-blue-500/20 text-blue-400 text-xs rounded font-mono mr-2">POST</span>
+                            <span class="text-sm text-gray-400">Create Product</span>
+                        </div>
+                        
+                        <div class="flex items-center px-2 py-2 hover:bg-dark-border rounded cursor-pointer">
+                            <span class="px-2 py-0.5 bg-yellow-500/20 text-yellow-400 text-xs rounded font-mono mr-2">PUT</span>
+                            <span class="text-sm text-gray-400">Update Product</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-1">
+                <div class="flex items-center px-2 py-2 hover:bg-dark-border rounded cursor-pointer group">
+                    <i class="fa-solid fa-caret-right text-gray-500 text-xs mr-2"></i>
+                    <i class="fa-solid fa-folder text-blue-400 mr-2"></i>
+                    <span class="text-sm text-gray-300 flex-1">User Service</span>
+                    <span class="text-xs text-gray-600">47</span>
+                </div>
+            </div>
+
+            <div class="mb-1">
+                <div class="flex items-center px-2 py-2 hover:bg-dark-border rounded cursor-pointer group">
+                    <i class="fa-solid fa-caret-right text-gray-500 text-xs mr-2"></i>
+                    <i class="fa-solid fa-folder text-teal-400 mr-2"></i>
+                    <span class="text-sm text-gray-300 flex-1">Payment Gateway</span>
+                    <span class="text-xs text-gray-600">15</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-3 border-t border-dark-border">
+            <button class="w-full px-3 py-2 bg-dark-border hover:bg-gray-700 rounded text-sm text-gray-300 flex items-center justify-center space-x-2 transition-colors">
+                <i class="fa-solid fa-plus text-xs"></i>
+                <span>New Collection</span>
+            </button>
+        </div>
+    </aside>
+
+    <div class="flex-1 flex flex-col">
+        
+        <header id="header" class="h-14 border-b border-dark-border bg-dark-surface flex items-center justify-between px-4">
+            <div class="flex items-center space-x-3">
+                <span class="text-base font-semibold">WireSniff</span>
+            </div>
+            
+            <div class="flex items-center space-x-3">
+                <button class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-200 hover:bg-dark-border rounded transition-all">
+                    <i class="fa-solid fa-search"></i>
+                </button>
+                <button class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-200 hover:bg-dark-border rounded transition-all">
+                    <i class="fa-regular fa-circle-question"></i>
+                </button>
+                <button class="px-3 py-1.5 rounded bg-dark-border hover:bg-gray-700 transition-colors text-sm flex items-center space-x-2">
+                    <i class="fa-solid fa-moon text-xs"></i>
+                    <span>Dark</span>
+                </button>
+            </div>
+        </header>
+
+        <div id="tabs-bar" class="h-10 border-b border-dark-border bg-dark-surface flex items-center px-2">
+            <div class="flex items-center space-x-1 flex-1 overflow-x-auto">
+                <div class="flex items-center px-3 h-8 bg-dark-border rounded cursor-pointer group">
+                    <span class="px-1.5 py-0.5 bg-green-500/20 text-green-400 text-xs rounded font-mono mr-2">GET</span>
+                    <span class="text-sm text-gray-200 mr-2">List Products</span>
+                    <div class="w-2 h-2 bg-orange-400 rounded-full mr-2"></div>
+                    <button class="w-5 h-5 flex items-center justify-center text-gray-500 hover:text-gray-200 opacity-0 group-hover:opacity-100 transition-all">
+                        <i class="fa-solid fa-times text-xs"></i>
+                    </button>
+                </div>
+
+                <div class="flex items-center px-3 h-8 hover:bg-dark-border rounded cursor-pointer group">
+                    <span class="px-1.5 py-0.5 bg-blue-500/20 text-blue-400 text-xs rounded font-mono mr-2">POST</span>
+                    <span class="text-sm text-gray-400 mr-2">Create Product</span>
+                    <button class="w-5 h-5 flex items-center justify-center text-gray-500 hover:text-gray-200 opacity-0 group-hover:opacity-100 transition-all">
+                        <i class="fa-solid fa-times text-xs"></i>
+                    </button>
+                </div>
+
+                <div class="flex items-center px-3 h-8 hover:bg-dark-border rounded cursor-pointer group">
+                    <span class="px-1.5 py-0.5 bg-yellow-500/20 text-yellow-400 text-xs rounded font-mono mr-2">PUT</span>
+                    <span class="text-sm text-gray-400 mr-2">Update Product</span>
+                    <button class="w-5 h-5 flex items-center justify-center text-gray-500 hover:text-gray-200 opacity-0 group-hover:opacity-100 transition-all">
+                        <i class="fa-solid fa-times text-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-1 ml-2">
+                <button class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-accent-blue hover:bg-dark-border rounded transition-all">
+                    <i class="fa-solid fa-plus text-xs"></i>
+                </button>
+                <button class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-accent-blue hover:bg-dark-border rounded transition-all">
+                    <i class="fa-solid fa-grip-vertical text-xs"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="flex-1 flex flex-col">
+            
+            <div id="request-section" class="h-1/2 border-b border-dark-border flex flex-col">
+                
+                <div id="request-controls" class="p-4 border-b border-dark-border">
+                    <div class="flex items-center space-x-2 mb-3">
+                        <div class="relative">
+                            <select class="bg-dark-surface border border-dark-border rounded px-3 py-2 text-sm font-mono text-green-400 appearance-none cursor-pointer focus:outline-none focus:border-accent-blue pr-8">
+                                <option>GET</option>
+                                <option>POST</option>
+                                <option>PUT</option>
+                                <option>PATCH</option>
+                                <option>DELETE</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down text-gray-500 text-xs absolute right-3 top-3 pointer-events-none"></i>
+                        </div>
+                        
+                        <input type="text" value="https://api.example.com/v1/products" class="flex-1 bg-dark-surface border border-dark-border rounded px-3 py-2 text-sm font-mono text-gray-300 focus:outline-none focus:border-accent-blue"/>
+                        
+                        <button class="px-6 py-2 bg-accent-blue hover:bg-cyan-400 text-dark-bg font-semibold rounded transition-all shadow-lg shadow-accent-blue/20">
+                            Send
+                        </button>
+                        
+                        <button class="w-9 h-9 flex items-center justify-center text-gray-400 hover:text-gray-200 hover:bg-dark-surface border border-dark-border rounded transition-all">
+                            <i class="fa-solid fa-floppy-disk"></i>
+                        </button>
+                    </div>
+
+                    <div class="flex items-center space-x-1 text-xs text-gray-500">
+                        <i class="fa-solid fa-info-circle"></i>
+                        <span>Unsaved changes</span>
+                    </div>
+                </div>
+
+                <div id="request-tabs" class="flex border-b border-dark-border">
+                    <button class="px-4 py-2.5 text-sm text-gray-400 hover:text-gray-200 hover:bg-dark-border transition-all">
+                        Params
+                    </button>
+                    <button class="px-4 py-2.5 text-sm text-accent-blue border-b-2 border-accent-blue">
+                        Headers
+                    </button>
+                    <button class="px-4 py-2.5 text-sm text-gray-400 hover:text-gray-200 hover:bg-dark-border transition-all">
+                        Auth
+                    </button>
+                    <button class="px-4 py-2.5 text-sm text-gray-400 hover:text-gray-200 hover:bg-dark-border transition-all">
+                        Body
+                    </button>
+                    <button class="px-4 py-2.5 text-sm text-gray-400 hover:text-gray-200 hover:bg-dark-border transition-all">
+                        Scripts
+                    </button>
+                </div>
+
+                <div id="request-content" class="flex-1 overflow-y-auto p-4">
+                    <div class="space-y-2">
+                        <div class="flex items-center space-x-2">
+                            <input type="checkbox" checked class="w-4 h-4 accent-accent-blue"/>
+                            <input type="text" value="Content-Type" class="flex-1 bg-dark-surface border border-dark-border rounded px-3 py-2 text-sm font-mono text-gray-300 focus:outline-none focus:border-accent-blue"/>
+                            <input type="text" value="application/json" class="flex-1 bg-dark-surface border border-dark-border rounded px-3 py-2 text-sm font-mono text-gray-300 focus:outline-none focus:border-accent-blue"/>
+                            <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-red-400 transition-all">
+                                <i class="fa-solid fa-trash text-xs"></i>
+                            </button>
+                        </div>
+
+                        <div class="flex items-center space-x-2">
+                            <input type="checkbox" checked class="w-4 h-4 accent-accent-blue"/>
+                            <input type="text" value="Authorization" class="flex-1 bg-dark-surface border border-dark-border rounded px-3 py-2 text-sm font-mono text-gray-300 focus:outline-none focus:border-accent-blue"/>
+                            <input type="text" value="Bearer {{auth_token}}" class="flex-1 bg-dark-surface border border-dark-border rounded px-3 py-2 text-sm font-mono text-gray-300 focus:outline-none focus:border-accent-blue"/>
+                            <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-red-400 transition-all">
+                                <i class="fa-solid fa-trash text-xs"></i>
+                            </button>
+                        </div>
+
+                        <div class="flex items-center space-x-2">
+                            <input type="checkbox" class="w-4 h-4 accent-accent-blue"/>
+                            <input type="text" placeholder="Key" class="flex-1 bg-dark-surface border border-dark-border rounded px-3 py-2 text-sm font-mono text-gray-500 focus:outline-none focus:border-accent-blue"/>
+                            <input type="text" placeholder="Value" class="flex-1 bg-dark-surface border border-dark-border rounded px-3 py-2 text-sm font-mono text-gray-500 focus:outline-none focus:border-accent-blue"/>
+                            <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-red-400 transition-all">
+                                <i class="fa-solid fa-trash text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <button class="mt-3 text-sm text-accent-teal hover:text-accent-blue transition-colors flex items-center space-x-2">
+                        <i class="fa-solid fa-plus text-xs"></i>
+                        <span>Add Header</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="response-section" class="h-1/2 flex flex-col">
+                
+                <div id="response-header" class="p-4 border-b border-dark-border flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm text-gray-400">Status:</span>
+                            <span class="px-2 py-1 bg-green-500/20 text-green-400 text-sm rounded font-mono">200 OK</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm text-gray-400">Time:</span>
+                            <span class="text-sm text-gray-300 font-mono">324ms</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm text-gray-400">Size:</span>
+                            <span class="text-sm text-gray-300 font-mono">2.4 KB</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-2">
+                        <button class="px-3 py-1.5 bg-dark-border hover:bg-gray-700 rounded text-sm text-gray-300 transition-all">
+                            <i class="fa-solid fa-copy mr-1"></i>
+                            Copy
+                        </button>
+                        <button class="px-3 py-1.5 bg-dark-border hover:bg-gray-700 rounded text-sm text-gray-300 transition-all">
+                            <i class="fa-solid fa-download mr-1"></i>
+                            Save
+                        </button>
+                    </div>
+                </div>
+
+                <div id="response-tabs" class="flex border-b border-dark-border">
+                    <button class="px-4 py-2.5 text-sm text-accent-blue border-b-2 border-accent-blue">
+                        Body
+                    </button>
+                    <button class="px-4 py-2.5 text-sm text-gray-400 hover:text-gray-200 hover:bg-dark-border transition-all">
+                        Headers
+                    </button>
+                    <button class="px-4 py-2.5 text-sm text-gray-400 hover:text-gray-200 hover:bg-dark-border transition-all">
+                        Cookies
+                    </button>
+                    <button class="px-4 py-2.5 text-sm text-gray-400 hover:text-gray-200 hover:bg-dark-border transition-all">
+                        Timeline
+                    </button>
+
+                    <div class="ml-auto flex items-center space-x-2 px-4">
+                        <button class="text-sm text-gray-400 hover:text-accent-blue transition-colors">Pretty</button>
+                        <span class="text-gray-600">|</span>
+                        <button class="text-sm text-accent-blue">Raw</button>
+                        <span class="text-gray-600">|</span>
+                        <button class="text-sm text-gray-400 hover:text-accent-blue transition-colors">Preview</button>
+                    </div>
+                </div>
+
+                <div id="response-content" class="flex-1 overflow-y-auto p-4 bg-dark-bg">
+                    <pre class="text-sm font-mono text-gray-300 leading-relaxed"><span class="text-gray-600">{</span>
+  <span class="text-accent-teal">"products"</span><span class="text-gray-600">:</span> <span class="text-gray-600">[</span>
+    <span class="text-gray-600">{</span>
+      <span class="text-accent-teal">"id"</span><span class="text-gray-600">:</span> <span class="text-yellow-400">1</span><span class="text-gray-600">,</span>
+      <span class="text-accent-teal">"name"</span><span class="text-gray-600">:</span> <span class="text-green-400">"Wireless Mouse"</span><span class="text-gray-600">,</span>
+      <span class="text-accent-teal">"price"</span><span class="text-gray-600">:</span> <span class="text-yellow-400">29.99</span><span class="text-gray-600">,</span>
+      <span class="text-accent-teal">"stock"</span><span class="text-gray-600">:</span> <span class="text-yellow-400">156</span><span class="text-gray-600">,</span>
+      <span class="text-accent-teal">"category"</span><span class="text-gray-600">:</span> <span class="text-green-400">"Electronics"</span>
+    <span class="text-gray-600">},</span>
+    <span class="text-gray-600">{</span>
+      <span class="text-accent-teal">"id"</span><span class="text-gray-600">:</span> <span class="text-yellow-400">2</span><span class="text-gray-600">,</span>
+      <span class="text-accent-teal">"name"</span><span class="text-gray-600">:</span> <span class="text-green-400">"Mechanical Keyboard"</span><span class="text-gray-600">,</span>
+      <span class="text-accent-teal">"price"</span><span class="text-gray-600">:</span> <span class="text-yellow-400">89.99</span><span class="text-gray-600">,</span>
+      <span class="text-accent-teal">"stock"</span><span class="text-gray-600">:</span> <span class="text-yellow-400">42</span><span class="text-gray-600">,</span>
+      <span class="text-accent-teal">"category"</span><span class="text-gray-600">:</span> <span class="text-green-400">"Electronics"</span>
+    <span class="text-gray-600">}</span>
+  <span class="text-gray-600">],</span>
+  <span class="text-accent-teal">"total"</span><span class="text-gray-600">:</span> <span class="text-yellow-400">2</span><span class="text-gray-600">,</span>
+  <span class="text-accent-teal">"page"</span><span class="text-gray-600">:</span> <span class="text-yellow-400">1</span>
+<span class="text-gray-600">}</span></pre>
+                </div>
+            </div>
+
+        </div>
+
+        <footer id="footer" class="h-8 border-t border-dark-border bg-dark-surface flex items-center justify-between px-4 text-xs">
+            <div class="flex items-center space-x-4 text-gray-500">
+                <span>Ready</span>
+                <span class="text-gray-600">|</span>
+                <span>Production</span>
+            </div>
+            <div class="flex items-center space-x-4 text-gray-500">
+                <button class="hover:text-accent-blue transition-colors">
+                    <i class="fa-solid fa-bug mr-1"></i>
+                    Console
+                </button>
+                <button class="hover:text-accent-blue transition-colors">
+                    <i class="fa-regular fa-clock mr-1"></i>
+                    History
+                </button>
+                <button class="hover:text-accent-blue transition-colors">
+                    <i class="fa-solid fa-keyboard mr-1"></i>
+                    Shortcuts
+                </button>
+            </div>
+        </footer>
+    </div>
+
+</div>
+
+</body>
+</html>

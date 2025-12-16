@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark-bg': '#1a1d23',
+                        'dark-surface': '#23262e',
+                        'dark-border': '#2d3139',
+                        'accent-blue': '#00d9ff',
+                        'accent-teal': '#14b8a6',
+                    },
+                    fontFamily: {
+                        'mono': ['JetBrains Mono', 'Fira Code', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <script> window.FontAwesomeConfig = { autoReplaceSvg: 'nest'};</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>::-webkit-scrollbar { display: none;} body { font-family: 'Inter', sans-serif; }</style>
+</head>
+<body class="bg-dark-bg text-gray-200 overflow-x-hidden">
+
+<div class="flex h-screen">
+    
+    <aside id="settings-sidebar" class="w-64 bg-dark-surface border-r border-dark-border flex flex-col">
+        <div class="p-4 border-b border-dark-border">
+            <button class="flex items-center space-x-2 text-gray-400 hover:text-accent-blue transition-colors">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span class="font-medium">Back to Workspace</span>
+            </button>
+        </div>
+        
+        <div class="flex-1 overflow-y-auto">
+            <div class="p-4">
+                <h2 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 flex items-center">
+                    <i class="fa-solid fa-gear mr-2"></i>
+                    Application
+                </h2>
+                <ul class="space-y-1">
+                    <li>
+                        <button class="w-full text-left px-3 py-2 rounded text-gray-300 hover:bg-dark-border hover:text-gray-100 transition-colors">
+                            General
+                        </button>
+                    </li>
+                    <li>
+                        <button class="w-full text-left px-3 py-2 rounded bg-dark-border text-accent-blue font-medium">
+                            Preferences
+                        </button>
+                    </li>
+                    <li>
+                        <button class="w-full text-left px-3 py-2 rounded text-gray-300 hover:bg-dark-border hover:text-gray-100 transition-colors">
+                            Keyboard Shortcuts
+                        </button>
+                    </li>
+                    <li>
+                        <button class="w-full text-left px-3 py-2 rounded text-gray-300 hover:bg-dark-border hover:text-gray-100 transition-colors">
+                            Data Storage
+                        </button>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="p-4 border-t border-dark-border">
+                <h2 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 flex items-center">
+                    <i class="fa-solid fa-network-wired mr-2"></i>
+                    Network
+                </h2>
+                <ul class="space-y-1">
+                    <li>
+                        <button class="w-full text-left px-3 py-2 rounded text-gray-300 hover:bg-dark-border hover:text-gray-100 transition-colors">
+                            Proxy Settings
+                        </button>
+                    </li>
+                    <li>
+                        <button class="w-full text-left px-3 py-2 rounded text-gray-300 hover:bg-dark-border hover:text-gray-100 transition-colors">
+                            SSL Certificates
+                        </button>
+                    </li>
+                    <li>
+                        <button class="w-full text-left px-3 py-2 rounded text-gray-300 hover:bg-dark-border hover:text-gray-100 transition-colors">
+                            Timeouts
+                        </button>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="p-4 border-t border-dark-border">
+                <h2 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 flex items-center">
+                    <i class="fa-regular fa-user mr-2"></i>
+                    Account
+                </h2>
+                <ul class="space-y-1">
+                    <li>
+                        <button class="w-full text-left px-3 py-2 rounded text-gray-300 hover:bg-dark-border hover:text-gray-100 transition-colors">
+                            Profile
+                        </button>
+                    </li>
+                    <li>
+                        <button class="w-full text-left px-3 py-2 rounded text-gray-300 hover:bg-dark-border hover:text-gray-100 transition-colors">
+                            Security
+                        </button>
+                    </li>
+                    <li>
+                        <button class="w-full text-left px-3 py-2 rounded text-gray-300 hover:bg-dark-border hover:text-gray-100 transition-colors">
+                            Notifications
+                        </button>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="p-4 border-t border-dark-border">
+                <h2 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 flex items-center">
+                    <i class="fa-solid fa-wrench mr-2"></i>
+                    Advanced
+                </h2>
+                <ul class="space-y-1">
+                    <li>
+                        <button class="w-full text-left px-3 py-2 rounded text-gray-300 hover:bg-dark-border hover:text-gray-100 transition-colors">
+                            Developer Tools
+                        </button>
+                    </li>
+                    <li>
+                        <button class="w-full text-left px-3 py-2 rounded text-gray-300 hover:bg-dark-border hover:text-gray-100 transition-colors">
+                            Experiments
+                        </button>
+                    </li>
+                    <li>
+                        <button class="w-full text-left px-3 py-2 rounded text-gray-300 hover:bg-dark-border hover:text-gray-100 transition-colors">
+                            Reset
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="p-4 border-t border-dark-border">
+            <div class="text-xs text-gray-500">
+                <p>Version 1.0.0</p>
+                <p class="mt-1">Build 2024.1.15</p>
+            </div>
+        </div>
+    </aside>
+
+    <main id="settings-main" class="flex-1 overflow-y-auto">
+        
+        <header id="settings-header" class="border-b border-dark-border bg-dark-surface sticky top-0 z-10">
+            <div class="px-8 py-5">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-100 mb-1">Preferences</h1>
+                        <p class="text-sm text-gray-500">Customize your WireSniff experience</p>
+                    </div>
+                    <button class="px-5 py-2.5 bg-accent-blue hover:bg-cyan-400 text-dark-bg font-semibold rounded-lg transition-all shadow-lg shadow-accent-blue/30">
+                        <i class="fa-solid fa-check mr-2"></i>
+                        Save Changes
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <div class="px-8 py-8">
+            <div class="max-w-4xl">
+                
+                <section id="theme-section" class="mb-12">
+                    <h2 class="text-lg font-semibold text-gray-200 mb-6 flex items-center">
+                        <i class="fa-solid fa-palette text-accent-teal mr-3"></i>
+                        Theme & Appearance
+                    </h2>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start justify-between pb-6 border-b border-dark-border">
+                            <div class="flex-1">
+                                <h3 class="font-medium text-gray-200 mb-2">Interface Theme</h3>
+                                <p class="text-sm text-gray-500 mb-4">Choose your preferred color scheme</p>
+                                <div class="flex items-center space-x-3">
+                                    <button class="px-4 py-2 bg-dark-border border border-accent-blue rounded-lg font-medium text-gray-200 flex items-center space-x-2">
+                                        <i class="fa-solid fa-moon"></i>
+                                        <span>Dark</span>
+                                    </button>
+                                    <button class="px-4 py-2 bg-dark-surface border border-dark-border rounded-lg text-gray-400 hover:text-gray-200 hover:border-gray-600 transition-colors flex items-center space-x-2">
+                                        <i class="fa-solid fa-sun"></i>
+                                        <span>Light</span>
+                                    </button>
+                                    <button class="px-4 py-2 bg-dark-surface border border-dark-border rounded-lg text-gray-400 hover:text-gray-200 hover:border-gray-600 transition-colors flex items-center space-x-2">
+                                        <i class="fa-solid fa-desktop"></i>
+                                        <span>System</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between pb-6 border-b border-dark-border">
+                            <div class="flex-1">
+                                <h3 class="font-medium text-gray-200 mb-2">Accent Color</h3>
+                                <p class="text-sm text-gray-500">Highlight color for active elements</p>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <button class="w-10 h-10 rounded-lg bg-accent-blue border-2 border-accent-blue shadow-lg shadow-accent-blue/30"></button>
+                                <button class="w-10 h-10 rounded-lg bg-accent-teal border-2 border-transparent hover:border-gray-600 transition-colors"></button>
+                                <button class="w-10 h-10 rounded-lg bg-purple-500 border-2 border-transparent hover:border-gray-600 transition-colors"></button>
+                                <button class="w-10 h-10 rounded-lg bg-green-500 border-2 border-transparent hover:border-gray-600 transition-colors"></button>
+                                <button class="w-10 h-10 rounded-lg bg-orange-500 border-2 border-transparent hover:border-gray-600 transition-colors"></button>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between pb-6 border-b border-dark-border">
+                            <div class="flex-1">
+                                <h3 class="font-medium text-gray-200 mb-2">Translucent UI</h3>
+                                <p class="text-sm text-gray-500">Use transparency effects in panels and modals</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" checked class="sr-only peer">
+                                <div class="w-11 h-6 bg-dark-border rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent-blue"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="editor-section" class="mb-12">
+                    <h2 class="text-lg font-semibold text-gray-200 mb-6 flex items-center">
+                        <i class="fa-solid fa-code text-accent-teal mr-3"></i>
+                        Editor & Display
+                    </h2>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-center justify-between pb-6 border-b border-dark-border">
+                            <div class="flex-1">
+                                <h3 class="font-medium text-gray-200 mb-2">Font Size</h3>
+                                <p class="text-sm text-gray-500">Adjust text size across the application</p>
+                            </div>
+                            <div class="relative">
+                                <select class="bg-dark-surface border border-dark-border text-gray-200 rounded-lg py-2 pl-4 pr-10 appearance-none cursor-pointer hover:border-gray-600 transition-colors">
+                                    <option>Small (12px)</option>
+                                    <option selected>Medium (14px)</option>
+                                    <option>Large (16px)</option>
+                                    <option>Extra Large (18px)</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
+                                    <i class="fa-solid fa-chevron-down text-xs"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between pb-6 border-b border-dark-border">
+                            <div class="flex-1">
+                                <h3 class="font-medium text-gray-200 mb-2">Editor Font</h3>
+                                <p class="text-sm text-gray-500">Monospace font for code blocks and request bodies</p>
+                            </div>
+                            <div class="relative">
+                                <select class="bg-dark-surface border border-dark-border text-gray-200 rounded-lg py-2 pl-4 pr-10 appearance-none cursor-pointer hover:border-gray-600 transition-colors font-mono">
+                                    <option>JetBrains Mono</option>
+                                    <option>Fira Code</option>
+                                    <option>Source Code Pro</option>
+                                    <option>Monaco</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
+                                    <i class="fa-solid fa-chevron-down text-xs"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between pb-6 border-b border-dark-border">
+                            <div class="flex-1">
+                                <h3 class="font-medium text-gray-200 mb-2">Line Numbers</h3>
+                                <p class="text-sm text-gray-500">Show line numbers in request and response editors</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" checked class="sr-only peer">
+                                <div class="w-11 h-6 bg-dark-border rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent-blue"></div>
+                            </label>
+                        </div>
+
+                        <div class="flex items-center justify-between pb-6 border-b border-dark-border">
+                            <div class="flex-1">
+                                <h3 class="font-medium text-gray-200 mb-2">Auto-format JSON</h3>
+                                <p class="text-sm text-gray-500">Automatically format JSON responses for readability</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" checked class="sr-only peer">
+                                <div class="w-11 h-6 bg-dark-border rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent-blue"></div>
+                            </label>
+                        </div>
+
+                        <div class="flex items-center justify-between pb-6 border-b border-dark-border">
+                            <div class="flex-1">
+                                <h3 class="font-medium text-gray-200 mb-2">Syntax Highlighting</h3>
+                                <p class="text-sm text-gray-500">Color-code request and response bodies</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" checked class="sr-only peer">
+                                <div class="w-11 h-6 bg-dark-border rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent-blue"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="network-section" class="mb-12">
+                    <h2 class="text-lg font-semibold text-gray-200 mb-6 flex items-center">
+                        <i class="fa-solid fa-network-wired text-accent-teal mr-3"></i>
+                        Network & Proxy
+                    </h2>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start justify-between pb-6 border-b border-dark-border">
+                            <div class="flex-1">
+                                <h3 class="font-medium text-gray-200 mb-2">Proxy Configuration</h3>
+                                <p class="text-sm text-gray-500 mb-4">Route requests through a proxy server</p>
+                                <div class="space-y-3">
+                                    <div class="flex items-center space-x-3">
+                                        <input type="text" placeholder="http://proxy.example.com:8080" class="flex-1 bg-dark-surface border border-dark-border text-gray-200 rounded-lg px-4 py-2 placeholder-gray-600 focus:outline-none focus:border-accent-blue transition-colors">
+                                        <button class="px-4 py-2 bg-dark-border hover:bg-gray-700 text-gray-300 rounded-lg transition-colors">
+                                            Test
+                                        </button>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <input type="checkbox" id="proxy-auth" class="w-4 h-4 rounded bg-dark-surface border-dark-border text-accent-blue focus:ring-accent-blue">
+                                        <label for="proxy-auth" class="text-sm text-gray-400">Requires authentication</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between pb-6 border-b border-dark-border">
+                            <div class="flex-1">
+                                <h3 class="font-medium text-gray-200 mb-2">SSL Certificate Verification</h3>
+                                <p class="text-sm text-gray-500">Verify SSL certificates for HTTPS requests</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" checked class="sr-only peer">
+                                <div class="w-11 h-6 bg-dark-border rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent-blue"></div>
+                            </label>
+                        </div>
+
+                        <div class="flex items-center justify-between pb-6 border-b border-dark-border">
+                            <div class="flex-1">
+                                <h3 class="font-medium text-gray-200 mb-2">Request Timeout</h3>
+                                <p class="text-sm text-gray-500">Maximum time to wait for a response</p>
+                            </div>
+                            <div class="relative">
+                                <select class="bg-dark-surface border border-dark-border text-gray-200 rounded-lg py-2 pl-4 pr-10 appearance-none cursor-pointer hover:border-gray-600 transition-colors">
+                                    <option>10 seconds</option>
+                                    <option selected>30 seconds</option>
+                                    <option>60 seconds</option>
+                                    <option>120 seconds</option>
+                                    <option>No timeout</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
+                                    <i class="fa-solid fa-chevron-down text-xs"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between pb-6 border-b border-dark-border">
+                            <div class="flex-1">
+                                <h3 class="font-medium text-gray-200 mb-2">Follow Redirects</h3>
+                                <p class="text-sm text-gray-500">Automatically follow HTTP redirects</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" checked class="sr-only peer">
+                                <div class="w-11 h-6 bg-dark-border rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent-blue"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="behavior-section" class="mb-12">
+                    <h2 class="text-lg font-semibold text-gray-200 mb-6 flex items-center">
+                        <i class="fa-solid fa-sliders text-accent-teal mr-3"></i>
+                        Behavior
+                    </h2>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-center justify-between pb-6 border-b border-dark-border">
+                            <div class="flex-1">
+                                <h3 class="font-medium text-gray-200 mb-2">Auto-save Requests</h3>
+                                <p class="text-sm text-gray-500">Automatically save changes to requests</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" checked class="sr-only peer">
+                                <div class="w-11 h-6 bg-dark-border rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent-blue"></div>
+                            </label>
+                        </div>
+
+                        <div class="flex items-center justify-between pb-6 border-b border-dark-border">
+                            <div class="flex-1">
+                                <h3 class="font-medium text-gray-200 mb-2">Confirm Before Closing</h3>
+                                <p class="text-sm text-gray-500">Show confirmation dialog when closing unsaved tabs</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" checked class="sr-only peer">
+                                <div class="w-11 h-6 bg-dark-border rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent-blue"></div>
+                            </label>
+                        </div>
+
+                        <div class="flex items-center justify-between pb-6 border-b border-dark-border">
+                            <div class="flex-1">
+                                <h3 class="font-medium text-gray-200 mb-2">Restore Tabs on Startup</h3>
+                                <p class="text-sm text-gray-500">Reopen previously opened tabs when launching</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" checked class="sr-only peer">
+                                <div class="w-11 h-6 bg-dark-border rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent-blue"></div>
+                            </label>
+                        </div>
+
+                        <div class="flex items-center justify-between pb-6 border-b border-dark-border">
+                            <div class="flex-1">
+                                <h3 class="font-medium text-gray-200 mb-2">Request History Limit</h3>
+                                <p class="text-sm text-gray-500">Maximum number of requests to keep in history</p>
+                            </div>
+                            <div class="relative">
+                                <select class="bg-dark-surface border border-dark-border text-gray-200 rounded-lg py-2 pl-4 pr-10 appearance-none cursor-pointer hover:border-gray-600 transition-colors">
+                                    <option>50 requests</option>
+                                    <option selected>100 requests</option>
+                                    <option>500 requests</option>
+                                    <option>1000 requests</option>
+                                    <option>Unlimited</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
+                                    <i class="fa-solid fa-chevron-down text-xs"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between pb-6 border-b border-dark-border">
+                            <div class="flex-1">
+                                <h3 class="font-medium text-gray-200 mb-2">Show Notifications</h3>
+                                <p class="text-sm text-gray-500">Display system notifications for completed requests</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" class="sr-only peer">
+                                <div class="w-11 h-6 bg-dark-border rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent-blue"></div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="flex items-center justify-end space-x-4 pt-8 border-t border-dark-border">
+                    <button class="px-6 py-2.5 bg-dark-surface border border-dark-border hover:bg-dark-border text-gray-300 font-medium rounded-lg transition-colors">
+                        Reset to Defaults
+                    </button>
+                    <button class="px-6 py-2.5 bg-accent-blue hover:bg-cyan-400 text-dark-bg font-semibold rounded-lg transition-all shadow-lg shadow-accent-blue/30">
+                        <i class="fa-solid fa-check mr-2"></i>
+                        Save Changes
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+</div>
+
+</body>
+</html>

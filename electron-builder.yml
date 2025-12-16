@@ -1,0 +1,138 @@
+# Electron Builder Configuration
+# https://www.electron.build/configuration/configuration
+
+appId: com.wiresniff.desktop
+productName: WireSniff
+copyright: Copyright © 2024 WireSniff
+
+directories:
+  buildResources: build
+  output: dist
+
+files:
+  - "!**/.vscode/*"
+  - "!src/*"
+  - "!electron/*"
+  - "!node_modules/**/.*"
+  - "!node_modules/**/*.md"
+  - "!node_modules/**/*.txt"
+  - "!**/*.map"
+  - "!**/*.ts"
+  - "!**/*.tsx"
+  - "!.env*"
+  - "!*.config.*"
+  - "!*.md"
+
+extraResources:
+  - from: "resources/"
+    to: "resources/"
+    filter:
+      - "**/*"
+
+# macOS configuration
+mac:
+  category: public.app-category.developer-tools
+  icon: build/icon.icns
+  hardenedRuntime: true
+  gatekeeperAssess: false
+  entitlements: build/entitlements.mac.plist
+  entitlementsInherit: build/entitlements.mac.plist
+  target:
+    - target: dmg
+      arch:
+        - x64
+        - arm64
+    - target: zip
+      arch:
+        - x64
+        - arm64
+
+dmg:
+  contents:
+    - x: 130
+      y: 220
+    - x: 410
+      y: 220
+      type: link
+      path: /Applications
+  window:
+    width: 540
+    height: 380
+
+# Windows configuration
+win:
+  icon: build/icon.ico
+  target:
+    - target: nsis
+      arch:
+        - x64
+        - arm64
+    - target: portable
+      arch:
+        - x64
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  deleteAppDataOnUninstall: false
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: WireSniff
+
+# Linux configuration
+linux:
+  icon: build/icons
+  category: Development
+  maintainer: WireSniff Team
+  vendor: WireSniff
+  target:
+    - target: AppImage
+      arch:
+        - x64
+        - arm64
+    - target: deb
+      arch:
+        - x64
+        - arm64
+    - target: rpm
+      arch:
+        - x64
+
+appImage:
+  artifactName: "${productName}-${version}-${arch}.AppImage"
+
+deb:
+  depends:
+    - libgtk-3-0
+    - libnotify4
+    - libnss3
+    - libxss1
+    - libxtst6
+    - xdg-utils
+    - libatspi2.0-0
+    - libuuid1
+
+rpm:
+  depends:
+    - gtk3
+    - libnotify
+    - nss
+    - libXScrnSaver
+    - libXtst
+    - xdg-utils
+    - at-spi2-core
+    - libuuid
+
+# Auto-update configuration
+publish:
+  provider: github
+  owner: wiresniff
+  repo: wiresniff-desktop
+  releaseType: release
+
+# Notarization for macOS (requires Apple Developer account)
+afterSign: scripts/notarize.js
+
+# Build hooks
+beforeBuild: scripts/beforeBuild.js

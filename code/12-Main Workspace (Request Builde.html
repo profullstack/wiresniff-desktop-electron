@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Builder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark-bg': '#1a1d23',
+                        'dark-surface': '#23262e',
+                        'dark-border': '#2d3139',
+                        'accent-blue': '#00d9ff',
+                        'accent-teal': '#14b8a6',
+                    },
+                    fontFamily: {
+                        'mono': ['JetBrains Mono', 'Fira Code', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <script> window.FontAwesomeConfig = { autoReplaceSvg: 'nest'};</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>::-webkit-scrollbar { display: none;} body { font-family: 'Inter', sans-serif; }</style>
+</head>
+<body class="bg-dark-bg text-gray-200 overflow-hidden">
+
+<div id="workspace-screen" class="h-screen flex flex-col">
+    
+    <header id="header" class="border-b border-dark-border bg-dark-surface z-20">
+        <div class="px-6 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 bg-gradient-to-br from-accent-blue to-accent-teal rounded flex items-center justify-center">
+                    <i class="fa-solid fa-bolt text-dark-bg text-sm"></i>
+                </div>
+                <span class="text-xl font-semibold tracking-tight">WireSniff</span>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <button class="px-3 py-1.5 rounded bg-dark-border hover:bg-gray-700 transition-colors text-sm flex items-center space-x-2">
+                    <i class="fa-solid fa-globe text-xs"></i>
+                    <span>Production</span>
+                    <i class="fa-solid fa-chevron-down text-xs"></i>
+                </button>
+                <button class="text-gray-400 hover:text-gray-200 transition-colors">
+                    <i class="fa-solid fa-magnifying-glass text-lg"></i>
+                </button>
+                <button class="text-gray-400 hover:text-gray-200 transition-colors">
+                    <i class="fa-regular fa-circle-question text-lg"></i>
+                </button>
+                <button class="text-gray-400 hover:text-gray-200 transition-colors">
+                    <i class="fa-solid fa-gear text-lg"></i>
+                </button>
+                <button class="px-3 py-1.5 rounded bg-dark-border hover:bg-gray-700 transition-colors text-sm flex items-center space-x-2">
+                    <i class="fa-solid fa-moon text-xs"></i>
+                    <span>Dark</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div id="main-workspace" class="flex-1 flex overflow-hidden">
+        
+        <aside id="sidebar" class="w-64 bg-dark-surface border-r border-dark-border flex flex-col">
+            <div class="p-4 border-b border-dark-border">
+                <button class="w-full px-4 py-2.5 bg-accent-blue hover:bg-cyan-400 text-dark-bg font-semibold rounded-lg transition-all flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>New Request</span>
+                </button>
+            </div>
+
+            <div class="flex-1 overflow-auto">
+                <div class="p-4">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">Collections</h3>
+                        <button class="text-gray-500 hover:text-gray-300">
+                            <i class="fa-solid fa-ellipsis"></i>
+                        </button>
+                    </div>
+
+                    <div id="collections-tree" class="space-y-1">
+                        <div class="group">
+                            <div class="flex items-center px-2 py-1.5 rounded hover:bg-dark-border cursor-pointer">
+                                <i class="fa-solid fa-chevron-right text-xs text-gray-500 mr-2"></i>
+                                <i class="fa-solid fa-folder text-purple-400 mr-2"></i>
+                                <span class="text-sm text-gray-300">E-commerce API</span>
+                                <span class="ml-auto text-xs text-gray-500">23</span>
+                            </div>
+                        </div>
+
+                        <div class="group">
+                            <div class="flex items-center px-2 py-1.5 rounded bg-dark-border">
+                                <i class="fa-solid fa-chevron-down text-xs text-gray-500 mr-2"></i>
+                                <i class="fa-solid fa-folder-open text-blue-400 mr-2"></i>
+                                <span class="text-sm text-gray-300 font-medium">User Service</span>
+                                <span class="ml-auto text-xs text-gray-500">47</span>
+                            </div>
+                            <div class="ml-6 mt-1 space-y-1">
+                                <div class="flex items-center px-2 py-1.5 rounded hover:bg-dark-border cursor-pointer">
+                                    <i class="fa-solid fa-file-code text-green-400 text-xs mr-2"></i>
+                                    <span class="text-sm text-gray-400">GET Users</span>
+                                </div>
+                                <div class="flex items-center px-2 py-1.5 rounded bg-accent-blue/10 border-l-2 border-accent-blue cursor-pointer">
+                                    <i class="fa-solid fa-file-code text-blue-400 text-xs mr-2"></i>
+                                    <span class="text-sm text-gray-200">POST Create User</span>
+                                </div>
+                                <div class="flex items-center px-2 py-1.5 rounded hover:bg-dark-border cursor-pointer">
+                                    <i class="fa-solid fa-file-code text-orange-400 text-xs mr-2"></i>
+                                    <span class="text-sm text-gray-400">PUT Update User</span>
+                                </div>
+                                <div class="flex items-center px-2 py-1.5 rounded hover:bg-dark-border cursor-pointer">
+                                    <i class="fa-solid fa-file-code text-red-400 text-xs mr-2"></i>
+                                    <span class="text-sm text-gray-400">DELETE User</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="group">
+                            <div class="flex items-center px-2 py-1.5 rounded hover:bg-dark-border cursor-pointer">
+                                <i class="fa-solid fa-chevron-right text-xs text-gray-500 mr-2"></i>
+                                <i class="fa-solid fa-folder text-teal-400 mr-2"></i>
+                                <span class="text-sm text-gray-300">Payment Gateway</span>
+                                <span class="ml-auto text-xs text-gray-500">15</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-4 border-t border-dark-border">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">History</h3>
+                        <button class="text-gray-500 hover:text-gray-300">
+                            <i class="fa-solid fa-clock-rotate-left text-xs"></i>
+                        </button>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="flex items-center px-2 py-1.5 rounded hover:bg-dark-border cursor-pointer">
+                            <span class="w-12 text-xs text-green-400 font-mono">GET</span>
+                            <span class="text-sm text-gray-400 truncate">/api/users</span>
+                        </div>
+                        <div class="flex items-center px-2 py-1.5 rounded hover:bg-dark-border cursor-pointer">
+                            <span class="w-12 text-xs text-blue-400 font-mono">POST</span>
+                            <span class="text-sm text-gray-400 truncate">/api/users</span>
+                        </div>
+                        <div class="flex items-center px-2 py-1.5 rounded hover:bg-dark-border cursor-pointer">
+                            <span class="w-12 text-xs text-orange-400 font-mono">PUT</span>
+                            <span class="text-sm text-gray-400 truncate">/api/users/123</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <div id="content-area" class="flex-1 flex flex-col overflow-hidden">
+            
+            <div id="tabs-bar" class="bg-dark-surface border-b border-dark-border flex items-center px-2">
+                <button class="px-3 py-2 text-gray-500 hover:text-gray-300">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button class="px-3 py-2 text-gray-500 hover:text-gray-300">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+                <div class="flex-1 flex items-center space-x-1 overflow-x-auto">
+                    <div class="flex items-center px-4 py-2 bg-dark-bg border-t-2 border-accent-blue text-gray-200 space-x-2">
+                        <i class="fa-solid fa-file-code text-blue-400 text-xs"></i>
+                        <span class="text-sm">POST Create User</span>
+                        <button class="ml-2 text-gray-500 hover:text-gray-300">
+                            <i class="fa-solid fa-xmark text-xs"></i>
+                        </button>
+                    </div>
+                    <div class="flex items-center px-4 py-2 text-gray-400 hover:bg-dark-border space-x-2 cursor-pointer">
+                        <i class="fa-solid fa-file-code text-green-400 text-xs"></i>
+                        <span class="text-sm">GET Users</span>
+                        <button class="ml-2 text-gray-500 hover:text-gray-300">
+                            <i class="fa-solid fa-xmark text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+                <button class="px-3 py-2 text-gray-500 hover:text-gray-300">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+            </div>
+
+            <div id="request-response-split" class="flex-1 flex flex-col overflow-hidden">
+                
+                <div id="request-builder" class="flex-1 flex flex-col border-b-2 border-dark-border">
+                    <div class="bg-dark-surface p-4 border-b border-dark-border">
+                        <div class="flex items-center space-x-2">
+                            <select class="px-3 py-2 bg-dark-bg border border-dark-border rounded text-sm font-mono text-blue-400 focus:outline-none focus:border-accent-blue">
+                                <option>GET</option>
+                                <option selected>POST</option>
+                                <option>PUT</option>
+                                <option>PATCH</option>
+                                <option>DELETE</option>
+                            </select>
+                            <input type="text" value="https://api.example.com/v1/users" class="flex-1 px-4 py-2 bg-dark-bg border border-dark-border rounded text-sm font-mono focus:outline-none focus:border-accent-blue" placeholder="Enter request URL">
+                            <button class="px-6 py-2 bg-accent-blue hover:bg-cyan-400 text-dark-bg font-semibold rounded transition-all flex items-center space-x-2">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                <span>Send</span>
+                            </button>
+                            <button class="px-4 py-2 bg-dark-border hover:bg-gray-700 text-gray-300 rounded transition-colors">
+                                <i class="fa-solid fa-floppy-disk"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="request-tabs" class="bg-dark-surface border-b border-dark-border flex items-center px-4 space-x-1">
+                        <button class="px-4 py-2 text-sm text-gray-400 hover:text-gray-200 border-b-2 border-transparent hover:border-gray-600">Params</button>
+                        <button class="px-4 py-2 text-sm text-gray-400 hover:text-gray-200 border-b-2 border-transparent hover:border-gray-600">Headers</button>
+                        <button class="px-4 py-2 text-sm text-gray-400 hover:text-gray-200 border-b-2 border-transparent hover:border-gray-600">Auth</button>
+                        <button class="px-4 py-2 text-sm text-accent-blue border-b-2 border-accent-blue">Body</button>
+                        <button class="px-4 py-2 text-sm text-gray-400 hover:text-gray-200 border-b-2 border-transparent hover:border-gray-600">Scripts</button>
+                    </div>
+
+                    <div id="request-body-editor" class="flex-1 overflow-auto bg-dark-bg">
+                        <div class="p-4">
+                            <div class="flex items-center space-x-4 mb-4">
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="radio" name="bodyType" class="text-accent-blue" checked>
+                                    <span class="text-sm">JSON</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="radio" name="bodyType" class="text-accent-blue">
+                                    <span class="text-sm">Form Data</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="radio" name="bodyType" class="text-accent-blue">
+                                    <span class="text-sm">Raw</span>
+                                </label>
+                            </div>
+                            <div class="bg-dark-surface border border-dark-border rounded p-4 font-mono text-sm">
+<pre class="text-gray-300"><span class="text-gray-500">{</span>
+  <span class="text-accent-teal">"name"</span><span class="text-gray-500">:</span> <span class="text-green-400">"John Doe"</span><span class="text-gray-500">,</span>
+  <span class="text-accent-teal">"email"</span><span class="text-gray-500">:</span> <span class="text-green-400">"john.doe@example.com"</span><span class="text-gray-500">,</span>
+  <span class="text-accent-teal">"role"</span><span class="text-gray-500">:</span> <span class="text-green-400">"admin"</span><span class="text-gray-500">,</span>
+  <span class="text-accent-teal">"active"</span><span class="text-gray-500">:</span> <span class="text-purple-400">true</span>
+<span class="text-gray-500">}</span></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="response-viewer" class="flex-1 flex flex-col bg-dark-surface">
+                    <div class="bg-dark-surface p-4 border-b border-dark-border flex items-center justify-between">
+                        <div class="flex items-center space-x-4">
+                            <span class="text-sm text-gray-400">Response</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="px-2 py-1 bg-green-500/20 text-green-400 text-xs font-semibold rounded">200 OK</span>
+                                <span class="text-xs text-gray-500">342ms</span>
+                                <span class="text-xs text-gray-500">•</span>
+                                <span class="text-xs text-gray-500">2.4 KB</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button class="px-3 py-1 text-xs bg-dark-border hover:bg-gray-700 rounded transition-colors">
+                                <i class="fa-solid fa-copy mr-1"></i>Copy
+                            </button>
+                            <button class="px-3 py-1 text-xs bg-dark-border hover:bg-gray-700 rounded transition-colors">
+                                <i class="fa-solid fa-download mr-1"></i>Save
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="response-tabs" class="bg-dark-surface border-b border-dark-border flex items-center px-4 space-x-1">
+                        <button class="px-4 py-2 text-sm text-accent-blue border-b-2 border-accent-blue">Body</button>
+                        <button class="px-4 py-2 text-sm text-gray-400 hover:text-gray-200 border-b-2 border-transparent hover:border-gray-600">Headers</button>
+                        <button class="px-4 py-2 text-sm text-gray-400 hover:text-gray-200 border-b-2 border-transparent hover:border-gray-600">Cookies</button>
+                        <button class="px-4 py-2 text-sm text-gray-400 hover:text-gray-200 border-b-2 border-transparent hover:border-gray-600">Timeline</button>
+                        <div class="flex-1"></div>
+                        <button class="px-3 py-1 text-xs bg-dark-border hover:bg-gray-700 rounded transition-colors">Pretty</button>
+                        <button class="px-3 py-1 text-xs text-gray-400 hover:text-gray-200">Raw</button>
+                    </div>
+
+                    <div id="response-body" class="flex-1 overflow-auto bg-dark-bg p-4">
+                        <div class="font-mono text-sm">
+<pre class="text-gray-300"><span class="text-gray-500">{</span>
+  <span class="text-accent-teal">"success"</span><span class="text-gray-500">:</span> <span class="text-purple-400">true</span><span class="text-gray-500">,</span>
+  <span class="text-accent-teal">"data"</span><span class="text-gray-500">:</span> <span class="text-gray-500">{</span>
+    <span class="text-accent-teal">"id"</span><span class="text-gray-500">:</span> <span class="text-blue-400">12345</span><span class="text-gray-500">,</span>
+    <span class="text-accent-teal">"name"</span><span class="text-gray-500">:</span> <span class="text-green-400">"John Doe"</span><span class="text-gray-500">,</span>
+    <span class="text-accent-teal">"email"</span><span class="text-gray-500">:</span> <span class="text-green-400">"john.doe@example.com"</span><span class="text-gray-500">,</span>
+    <span class="text-accent-teal">"role"</span><span class="text-gray-500">:</span> <span class="text-green-400">"admin"</span><span class="text-gray-500">,</span>
+    <span class="text-accent-teal">"active"</span><span class="text-gray-500">:</span> <span class="text-purple-400">true</span><span class="text-gray-500">,</span>
+    <span class="text-accent-teal">"created_at"</span><span class="text-gray-500">:</span> <span class="text-green-400">"2024-01-15T10:30:00Z"</span><span class="text-gray-500">,</span>
+    <span class="text-accent-teal">"updated_at"</span><span class="text-gray-500">:</span> <span class="text-green-400">"2024-01-15T10:30:00Z"</span>
+  <span class="text-gray-500">},</span>
+  <span class="text-accent-teal">"message"</span><span class="text-gray-500">:</span> <span class="text-green-400">"User created successfully"</span>
+<span class="text-gray-500">}</span></pre>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <aside id="inspector-panel" class="w-72 bg-dark-surface border-l border-dark-border flex flex-col">
+            <div class="p-4 border-b border-dark-border flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-magnifying-glass-chart text-accent-blue"></i>
+                    <span class="font-semibold">Inspector</span>
+                </div>
+                <button class="text-gray-500 hover:text-gray-300">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="flex-1 overflow-auto p-4 space-y-4">
+                <div id="request-info">
+                    <h3 class="text-sm font-semibold text-gray-400 mb-2">Request Info</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Method</span>
+                            <span class="text-blue-400 font-mono">POST</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Status</span>
+                            <span class="text-green-400">Success</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Time</span>
+                            <span class="text-gray-300">342ms</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Size</span>
+                            <span class="text-gray-300">2.4 KB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="timing-breakdown" class="pt-4 border-t border-dark-border">
+                    <h3 class="text-sm font-semibold text-gray-400 mb-3">Timing</h3>
+                    <div class="space-y-2">
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="text-gray-500">DNS Lookup</span>
+                                <span class="text-gray-400">12ms</span>
+                            </div>
+                            <div class="h-1.5 bg-dark-bg rounded overflow-hidden">
+                                <div class="h-full bg-purple-500 w-[5%]"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="text-gray-500">TCP Connect</span>
+                                <span class="text-gray-400">45ms</span>
+                            </div>
+                            <div class="h-1.5 bg-dark-bg rounded overflow-hidden">
+                                <div class="h-full bg-blue-500 w-[15%]"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="text-gray-500">TLS Handshake</span>
+                                <span class="text-gray-400">89ms</span>
+                            </div>
+                            <div class="h-1.5 bg-dark-bg rounded overflow-hidden">
+                                <div class="h-full bg-teal-500 w-[30%]"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="text-gray-500">TTFB</span>
+                                <span class="text-gray-400">156ms</span>
+                            </div>
+                            <div class="h-1.5 bg-dark-bg rounded overflow-hidden">
+                                <div class="h-full bg-accent-blue w-[50%]"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="text-gray-500">Content Download</span>
+                                <span class="text-gray-400">40ms</span>
+                            </div>
+                            <div class="h-1.5 bg-dark-bg rounded overflow-hidden">
+                                <div class="h-full bg-green-500 w-[12%]"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="headers-preview" class="pt-4 border-t border-dark-border">
+                    <h3 class="text-sm font-semibold text-gray-400 mb-2">Headers (5)</h3>
+                    <div class="space-y-1 text-xs font-mono">
+                        <div class="flex justify-between py-1">
+                            <span class="text-gray-500">content-type</span>
+                            <span class="text-gray-400">application/json</span>
+                        </div>
+                        <div class="flex justify-between py-1">
+                            <span class="text-gray-500">authorization</span>
+                            <span class="text-gray-400">Bearer ••••</span>
+                        </div>
+                        <div class="flex justify-between py-1">
+                            <span class="text-gray-500">user-agent</span>
+                            <span class="text-gray-400">WireSniff/1.0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+    </div>
+
+    <footer id="footer" class="border-t border-dark-border bg-dark-surface">
+        <div class="px-6 py-2 flex items-center justify-between text-xs">
+            <div class="flex items-center space-x-4 text-gray-500">
+                <button class="hover:text-accent-blue transition-colors flex items-center space-x-1">
+                    <i class="fa-solid fa-bug"></i>
+                    <span>Debug</span>
+                </button>
+                <button class="hover:text-accent-blue transition-colors flex items-center space-x-1">
+                    <i class="fa-solid fa-terminal"></i>
+                    <span>Console</span>
+                </button>
+                <span>Ready</span>
+            </div>
+            <div class="flex items-center space-x-4 text-gray-500">
+                <span>No requests running</span>
+                <button class="hover:text-accent-blue transition-colors">
+                    <i class="fa-solid fa-keyboard"></i>
+                </button>
+                <button class="hover:text-accent-blue transition-colors">
+                    <i class="fa-regular fa-circle-question"></i>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+</body>
+</html>

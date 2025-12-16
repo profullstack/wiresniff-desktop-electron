@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark-bg': '#1a1d23',
+                        'dark-surface': '#23262e',
+                        'dark-border': '#2d3139',
+                        'accent-blue': '#00d9ff',
+                        'accent-teal': '#14b8a6',
+                    },
+                    fontFamily: {
+                        'mono': ['JetBrains Mono', 'Fira Code', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <script> window.FontAwesomeConfig = { autoReplaceSvg: 'nest'};</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>::-webkit-scrollbar { display: none;} body { font-family: 'Inter', sans-serif; }</style>
+</head>
+<body class="bg-dark-bg text-gray-200 overflow-x-hidden">
+
+<div id="welcome-screen" class="min-h-screen flex flex-col">
+    
+    <header id="header" class="border-b border-dark-border bg-dark-surface">
+        <div class="px-6 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 bg-gradient-to-br from-accent-blue to-accent-teal rounded flex items-center justify-center">
+                    <i class="fa-solid fa-bolt text-dark-bg text-sm"></i>
+                </div>
+                <span class="text-xl font-semibold tracking-tight">WireSniff</span>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <button class="text-gray-400 hover:text-gray-200 transition-colors">
+                    <i class="fa-regular fa-circle-question text-lg"></i>
+                </button>
+                <button class="text-gray-400 hover:text-gray-200 transition-colors">
+                    <i class="fa-solid fa-gear text-lg"></i>
+                </button>
+                <button class="px-3 py-1.5 rounded bg-dark-border hover:bg-gray-700 transition-colors text-sm flex items-center space-x-2">
+                    <i class="fa-solid fa-moon text-xs"></i>
+                    <span>Dark</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" class="flex-1 flex items-center justify-center px-6 py-12">
+        <div class="w-full max-w-5xl">
+            
+            <div id="hero-section" class="text-center mb-16">
+                <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-accent-blue to-accent-teal rounded-2xl mb-6 shadow-lg shadow-accent-blue/20">
+                    <i class="fa-solid fa-bolt text-dark-bg text-3xl"></i>
+                </div>
+                <h1 class="text-5xl font-bold mb-3 bg-gradient-to-r from-accent-blue to-accent-teal bg-clip-text text-transparent">
+                    WireSniff
+                </h1>
+                <p class="text-xl text-gray-400 mb-12">Inspect every wire.</p>
+                
+                <div id="cta-buttons" class="flex items-center justify-center space-x-4 mb-8">
+                    <button class="px-8 py-3.5 bg-accent-blue hover:bg-cyan-400 text-dark-bg font-semibold rounded-lg transition-all shadow-lg shadow-accent-blue/30 hover:shadow-accent-blue/50 flex items-center space-x-2">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>New Request</span>
+                    </button>
+                    <button class="px-8 py-3.5 bg-dark-surface hover:bg-dark-border border border-dark-border text-gray-200 font-semibold rounded-lg transition-colors flex items-center space-x-2">
+                        <i class="fa-solid fa-folder-open"></i>
+                        <span>Import Collection</span>
+                    </button>
+                </div>
+                
+                <div id="quick-actions" class="flex items-center justify-center space-x-6 text-sm">
+                    <button class="text-accent-teal hover:text-accent-blue transition-colors flex items-center space-x-2">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <span>Open Recent</span>
+                    </button>
+                    <span class="text-gray-600">•</span>
+                    <button class="text-accent-teal hover:text-accent-blue transition-colors flex items-center space-x-2">
+                        <i class="fa-solid fa-book"></i>
+                        <span>Documentation</span>
+                    </button>
+                    <span class="text-gray-600">•</span>
+                    <button class="text-accent-teal hover:text-accent-blue transition-colors flex items-center space-x-2">
+                        <i class="fa-solid fa-keyboard"></i>
+                        <span>Shortcuts</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="recent-projects-section" class="mb-12">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-lg font-semibold text-gray-300">Recent Projects</h2>
+                    <button class="text-sm text-accent-teal hover:text-accent-blue transition-colors">
+                        View All <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+                
+                <div id="recent-projects-grid" class="grid grid-cols-3 gap-4">
+                    
+                    <div class="bg-dark-surface border border-dark-border rounded-lg p-5 hover:border-accent-blue/50 transition-all cursor-pointer group">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-layer-group text-purple-400"></i>
+                            </div>
+                            <span class="text-xs text-gray-500">2 days ago</span>
+                        </div>
+                        <h3 class="font-semibold text-gray-200 mb-2 group-hover:text-accent-blue transition-colors">E-commerce API</h3>
+                        <p class="text-sm text-gray-500 mb-3">23 requests • 4 environments</p>
+                        <div class="flex items-center space-x-2">
+                            <span class="px-2 py-1 bg-green-500/20 text-green-400 text-xs rounded">REST</span>
+                            <span class="px-2 py-1 bg-blue-500/20 text-blue-400 text-xs rounded">OAuth</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-dark-surface border border-dark-border rounded-lg p-5 hover:border-accent-blue/50 transition-all cursor-pointer group">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-database text-blue-400"></i>
+                            </div>
+                            <span class="text-xs text-gray-500">5 days ago</span>
+                        </div>
+                        <h3 class="font-semibold text-gray-200 mb-2 group-hover:text-accent-blue transition-colors">User Service</h3>
+                        <p class="text-sm text-gray-500 mb-3">47 requests • 2 environments</p>
+                        <div class="flex items-center space-x-2">
+                            <span class="px-2 py-1 bg-green-500/20 text-green-400 text-xs rounded">REST</span>
+                            <span class="px-2 py-1 bg-orange-500/20 text-orange-400 text-xs rounded">GraphQL</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-dark-surface border border-dark-border rounded-lg p-5 hover:border-accent-blue/50 transition-all cursor-pointer group">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="w-10 h-10 bg-teal-500/20 rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-bolt text-teal-400"></i>
+                            </div>
+                            <span class="text-xs text-gray-500">1 week ago</span>
+                        </div>
+                        <h3 class="font-semibold text-gray-200 mb-2 group-hover:text-accent-blue transition-colors">Payment Gateway</h3>
+                        <p class="text-sm text-gray-500 mb-3">15 requests • 3 environments</p>
+                        <div class="flex items-center space-x-2">
+                            <span class="px-2 py-1 bg-green-500/20 text-green-400 text-xs rounded">REST</span>
+                            <span class="px-2 py-1 bg-red-500/20 text-red-400 text-xs rounded">Webhooks</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="quick-links-section">
+                <h2 class="text-lg font-semibold text-gray-300 mb-6">Quick Links</h2>
+                
+                <div id="quick-links-grid" class="grid grid-cols-4 gap-4">
+                    
+                    <button class="bg-dark-surface border border-dark-border rounded-lg p-6 hover:border-accent-blue/50 hover:bg-dark-border transition-all group text-left">
+                        <div class="w-12 h-12 bg-accent-blue/20 rounded-lg flex items-center justify-center mb-4 group-hover:bg-accent-blue/30 transition-colors">
+                            <i class="fa-solid fa-file-import text-accent-blue text-xl"></i>
+                        </div>
+                        <h3 class="font-semibold text-gray-200 mb-1">Import Postman</h3>
+                        <p class="text-sm text-gray-500">Migrate collections</p>
+                    </button>
+
+                    <button class="bg-dark-surface border border-dark-border rounded-lg p-6 hover:border-accent-blue/50 hover:bg-dark-border transition-all group text-left">
+                        <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mb-4 group-hover:bg-purple-500/30 transition-colors">
+                            <i class="fa-solid fa-code text-purple-400 text-xl"></i>
+                        </div>
+                        <h3 class="font-semibold text-gray-200 mb-1">OpenAPI</h3>
+                        <p class="text-sm text-gray-500">Import Swagger</p>
+                    </button>
+
+                    <button class="bg-dark-surface border border-dark-border rounded-lg p-6 hover:border-accent-blue/50 hover:bg-dark-border transition-all group text-left">
+                        <div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mb-4 group-hover:bg-green-500/30 transition-colors">
+                            <i class="fa-solid fa-terminal text-green-400 text-xl"></i>
+                        </div>
+                        <h3 class="font-semibold text-gray-200 mb-1">Import cURL</h3>
+                        <p class="text-sm text-gray-500">Paste command</p>
+                    </button>
+
+                    <button class="bg-dark-surface border border-dark-border rounded-lg p-6 hover:border-accent-blue/50 hover:bg-dark-border transition-all group text-left">
+                        <div class="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mb-4 group-hover:bg-orange-500/30 transition-colors">
+                            <i class="fa-solid fa-book-open text-orange-400 text-xl"></i>
+                        </div>
+                        <h3 class="font-semibold text-gray-200 mb-1">Learn</h3>
+                        <p class="text-sm text-gray-500">View tutorials</p>
+                    </button>
+
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer id="footer" class="border-t border-dark-border bg-dark-surface">
+        <div class="px-6 py-4 flex items-center justify-between text-sm">
+            <div class="flex items-center space-x-6 text-gray-500">
+                <span>Version 1.0.0</span>
+                <a href="#" class="hover:text-accent-blue transition-colors">Release Notes</a>
+                <a href="#" class="hover:text-accent-blue transition-colors">Privacy</a>
+            </div>
+            <div class="flex items-center space-x-4 text-gray-500">
+                <a href="#" class="hover:text-accent-blue transition-colors">
+                    <i class="fa-brands fa-github text-lg"></i>
+                </a>
+                <a href="#" class="hover:text-accent-blue transition-colors">
+                    <i class="fa-brands fa-twitter text-lg"></i>
+                </a>
+                <a href="#" class="hover:text-accent-blue transition-colors">
+                    <i class="fa-brands fa-discord text-lg"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+</body>
+</html>

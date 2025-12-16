@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error States</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark-bg': '#1a1d23',
+                        'dark-surface': '#23262e',
+                        'dark-border': '#2d3139',
+                        'accent-blue': '#00d9ff',
+                        'accent-teal': '#14b8a6',
+                    },
+                    fontFamily: {
+                        'mono': ['JetBrains Mono', 'Fira Code', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <script> window.FontAwesomeConfig = { autoReplaceSvg: 'nest'};</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>::-webkit-scrollbar { display: none;} body { font-family: 'Inter', sans-serif; }</style>
+</head>
+<body class="bg-dark-bg text-gray-200 overflow-x-hidden">
+
+<div class="flex h-screen">
+    
+    <aside id="sidebar" class="w-64 bg-dark-surface border-r border-dark-border flex flex-col">
+        <div class="px-4 py-3 border-b border-dark-border flex items-center space-x-3">
+            <div class="w-8 h-8 bg-gradient-to-br from-accent-blue to-accent-teal rounded flex items-center justify-center">
+                <i class="fa-solid fa-bolt text-dark-bg text-sm"></i>
+            </div>
+            <span class="text-xl font-semibold tracking-tight">WireSniff</span>
+        </div>
+
+        <div class="flex-1 overflow-y-auto py-4">
+            <div class="px-3 mb-6">
+                <button class="w-full px-4 py-2.5 bg-accent-blue hover:bg-cyan-400 text-dark-bg font-semibold rounded-lg transition-all flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>New Request</span>
+                </button>
+            </div>
+
+            <div class="px-3 mb-2">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Collections</span>
+                    <button class="text-gray-500 hover:text-gray-300">
+                        <i class="fa-solid fa-plus text-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="px-3 space-y-1">
+                <button class="w-full px-3 py-2 text-left text-gray-400 hover:bg-dark-border hover:text-gray-200 rounded transition-colors flex items-center space-x-2">
+                    <i class="fa-solid fa-folder text-sm"></i>
+                    <span class="text-sm">E-commerce API</span>
+                </button>
+                <button class="w-full px-3 py-2 text-left text-gray-400 hover:bg-dark-border hover:text-gray-200 rounded transition-colors flex items-center space-x-2">
+                    <i class="fa-solid fa-folder text-sm"></i>
+                    <span class="text-sm">User Service</span>
+                </button>
+            </div>
+
+            <div class="px-3 mt-6 mb-2">
+                <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Environments</span>
+            </div>
+
+            <div class="px-3 space-y-1">
+                <button class="w-full px-3 py-2 text-left text-gray-400 hover:bg-dark-border hover:text-gray-200 rounded transition-colors flex items-center space-x-2">
+                    <i class="fa-solid fa-circle text-xs text-green-400"></i>
+                    <span class="text-sm">Local</span>
+                </button>
+                <button class="w-full px-3 py-2 text-left text-gray-400 hover:bg-dark-border hover:text-gray-200 rounded transition-colors flex items-center space-x-2">
+                    <i class="fa-solid fa-circle text-xs text-gray-600"></i>
+                    <span class="text-sm">Staging</span>
+                </button>
+                <button class="w-full px-3 py-2 text-left text-gray-400 hover:bg-dark-border hover:text-gray-200 rounded transition-colors flex items-center space-x-2">
+                    <i class="fa-solid fa-circle text-xs text-gray-600"></i>
+                    <span class="text-sm">Production</span>
+                </button>
+            </div>
+
+            <div class="px-3 mt-6 mb-2">
+                <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">History</span>
+            </div>
+
+            <div class="px-3 space-y-1">
+                <button class="w-full px-3 py-2 text-left text-gray-400 hover:bg-dark-border hover:text-gray-200 rounded transition-colors flex items-center space-x-2">
+                    <i class="fa-solid fa-clock-rotate-left text-sm"></i>
+                    <span class="text-sm">Recent Requests</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="mt-auto border-t border-dark-border">
+            <button class="w-full px-4 py-3 text-left text-gray-400 hover:bg-dark-border hover:text-gray-200 transition-colors flex items-center space-x-3">
+                <i class="fa-solid fa-gear"></i>
+                <span class="text-sm">Settings</span>
+            </button>
+            <button class="w-full px-4 py-3 text-left text-gray-400 hover:bg-dark-border hover:text-gray-200 transition-colors flex items-center space-x-3">
+                <i class="fa-regular fa-circle-question"></i>
+                <span class="text-sm">Help & Support</span>
+            </button>
+        </div>
+    </aside>
+
+    <div class="flex-1 flex flex-col">
+        
+        <header id="header" class="border-b border-dark-border bg-dark-surface">
+            <div class="px-6 py-3 flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <button class="text-gray-400 hover:text-gray-200 transition-colors">
+                        <i class="fa-solid fa-bars text-lg"></i>
+                    </button>
+                    <div class="text-sm text-gray-500">
+                        <span class="text-gray-400">Collections</span>
+                        <i class="fa-solid fa-chevron-right text-xs mx-2"></i>
+                        <span>Error States Demo</span>
+                    </div>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <button class="text-gray-400 hover:text-gray-200 transition-colors">
+                        <i class="fa-regular fa-circle-question text-lg"></i>
+                    </button>
+                    <button class="px-3 py-1.5 rounded bg-dark-border hover:bg-gray-700 transition-colors text-sm flex items-center space-x-2">
+                        <i class="fa-solid fa-moon text-xs"></i>
+                        <span>Dark</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main id="main-content" class="flex-1 overflow-y-auto p-8">
+            
+            <div id="page-header" class="mb-8">
+                <h1 class="text-3xl font-bold mb-2">Error & Empty States</h1>
+                <p class="text-gray-400">Examples of error messages and empty state screens in WireSniff</p>
+            </div>
+
+            <div id="states-grid" class="grid grid-cols-2 gap-6">
+                
+                <div id="empty-collection-state" class="bg-dark-surface border border-dark-border rounded-lg p-8">
+                    <div class="flex flex-col items-center justify-center text-center py-12">
+                        <div class="w-16 h-16 bg-gray-700/30 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-folder-open text-gray-500 text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-300 mb-2">No Collections Yet</h3>
+                        <p class="text-sm text-gray-500 mb-6 max-w-xs">Create your first collection to organize your API requests and start testing.</p>
+                        <button class="px-6 py-2.5 bg-accent-blue hover:bg-cyan-400 text-dark-bg font-semibold rounded-lg transition-all flex items-center space-x-2">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>Create Collection</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="no-requests-state" class="bg-dark-surface border border-dark-border rounded-lg p-8">
+                    <div class="flex flex-col items-center justify-center text-center py-12">
+                        <div class="w-16 h-16 bg-gray-700/30 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-file-lines text-gray-500 text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-300 mb-2">No Requests in Collection</h3>
+                        <p class="text-sm text-gray-500 mb-6 max-w-xs">Add your first request to this collection to get started with API testing.</p>
+                        <button class="px-6 py-2.5 bg-accent-blue hover:bg-cyan-400 text-dark-bg font-semibold rounded-lg transition-all flex items-center space-x-2">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>New Request</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="network-error-state" class="bg-dark-surface border border-red-500/30 rounded-lg p-8">
+                    <div class="flex flex-col items-center justify-center text-center py-12">
+                        <div class="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-wifi text-red-400 text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-red-400 mb-2">Network Error</h3>
+                        <p class="text-sm text-gray-400 mb-2">Could not connect to the server</p>
+                        <p class="text-xs text-gray-500 mb-6 max-w-md font-mono">ERR_CONNECTION_REFUSED at https://api.example.com</p>
+                        <div class="flex items-center space-x-3">
+                            <button class="px-5 py-2 bg-red-500/20 hover:bg-red-500/30 text-red-400 font-medium rounded-lg transition-all flex items-center space-x-2">
+                                <i class="fa-solid fa-rotate-right"></i>
+                                <span>Retry</span>
+                            </button>
+                            <button class="px-5 py-2 bg-dark-border hover:bg-gray-700 text-gray-300 font-medium rounded-lg transition-all">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="timeout-error-state" class="bg-dark-surface border border-orange-500/30 rounded-lg p-8">
+                    <div class="flex flex-col items-center justify-center text-center py-12">
+                        <div class="w-16 h-16 bg-orange-500/20 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-clock text-orange-400 text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-orange-400 mb-2">Request Timeout</h3>
+                        <p class="text-sm text-gray-400 mb-2">The request took too long to complete</p>
+                        <p class="text-xs text-gray-500 mb-6 max-w-md">Timeout after 30000ms</p>
+                        <div class="flex items-center space-x-3">
+                            <button class="px-5 py-2 bg-orange-500/20 hover:bg-orange-500/30 text-orange-400 font-medium rounded-lg transition-all flex items-center space-x-2">
+                                <i class="fa-solid fa-rotate-right"></i>
+                                <span>Try Again</span>
+                            </button>
+                            <button class="px-5 py-2 bg-dark-border hover:bg-gray-700 text-gray-300 font-medium rounded-lg transition-all">
+                                Adjust Timeout
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="auth-error-state" class="bg-dark-surface border border-yellow-500/30 rounded-lg p-8">
+                    <div class="flex flex-col items-center justify-center text-center py-12">
+                        <div class="w-16 h-16 bg-yellow-500/20 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-lock text-yellow-400 text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-yellow-400 mb-2">Authentication Required</h3>
+                        <p class="text-sm text-gray-400 mb-2">401 Unauthorized</p>
+                        <p class="text-xs text-gray-500 mb-6 max-w-md">Your authentication token may have expired or is invalid.</p>
+                        <div class="flex items-center space-x-3">
+                            <button class="px-5 py-2 bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-400 font-medium rounded-lg transition-all flex items-center space-x-2">
+                                <i class="fa-solid fa-key"></i>
+                                <span>Update Auth</span>
+                            </button>
+                            <button class="px-5 py-2 bg-dark-border hover:bg-gray-700 text-gray-300 font-medium rounded-lg transition-all">
+                                Retry
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="invalid-request-state" class="bg-dark-surface border border-red-500/30 rounded-lg p-8">
+                    <div class="flex flex-col items-center justify-center text-center py-12">
+                        <div class="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-triangle-exclamation text-red-400 text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-red-400 mb-2">Invalid Request</h3>
+                        <p class="text-sm text-gray-400 mb-2">400 Bad Request</p>
+                        <p class="text-xs text-gray-500 mb-6 max-w-md font-mono">"email" field is required</p>
+                        <div class="flex items-center space-x-3">
+                            <button class="px-5 py-2 bg-red-500/20 hover:bg-red-500/30 text-red-400 font-medium rounded-lg transition-all flex items-center space-x-2">
+                                <i class="fa-solid fa-pencil"></i>
+                                <span>Edit Request</span>
+                            </button>
+                            <button class="px-5 py-2 bg-dark-border hover:bg-gray-700 text-gray-300 font-medium rounded-lg transition-all">
+                                View Docs
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="no-response-state" class="bg-dark-surface border border-dark-border rounded-lg p-8">
+                    <div class="flex flex-col items-center justify-center text-center py-12">
+                        <div class="w-16 h-16 bg-gray-700/30 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-paper-plane text-gray-500 text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-300 mb-2">No Response Yet</h3>
+                        <p class="text-sm text-gray-500 mb-6 max-w-xs">Click "Send" to execute this request and view the response.</p>
+                        <button class="px-6 py-2.5 bg-accent-blue hover:bg-cyan-400 text-dark-bg font-semibold rounded-lg transition-all flex items-center space-x-2">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            <span>Send Request</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="empty-history-state" class="bg-dark-surface border border-dark-border rounded-lg p-8">
+                    <div class="flex flex-col items-center justify-center text-center py-12">
+                        <div class="w-16 h-16 bg-gray-700/30 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-clock-rotate-left text-gray-500 text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-300 mb-2">No Request History</h3>
+                        <p class="text-sm text-gray-500 mb-6 max-w-xs">Your request history will appear here once you start sending requests.</p>
+                        <button class="px-6 py-2.5 bg-accent-teal hover:bg-teal-400 text-dark-bg font-semibold rounded-lg transition-all flex items-center space-x-2">
+                            <i class="fa-solid fa-rocket"></i>
+                            <span>Send First Request</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="server-error-state" class="bg-dark-surface border border-red-500/30 rounded-lg p-8">
+                    <div class="flex flex-col items-center justify-center text-center py-12">
+                        <div class="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-server text-red-400 text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-red-400 mb-2">Server Error</h3>
+                        <p class="text-sm text-gray-400 mb-2">500 Internal Server Error</p>
+                        <p class="text-xs text-gray-500 mb-6 max-w-md">The server encountered an unexpected condition.</p>
+                        <div class="flex items-center space-x-3">
+                            <button class="px-5 py-2 bg-red-500/20 hover:bg-red-500/30 text-red-400 font-medium rounded-lg transition-all flex items-center space-x-2">
+                                <i class="fa-solid fa-rotate-right"></i>
+                                <span>Retry</span>
+                            </button>
+                            <button class="px-5 py-2 bg-dark-border hover:bg-gray-700 text-gray-300 font-medium rounded-lg transition-all">
+                                Report Issue
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="permission-error-state" class="bg-dark-surface border border-purple-500/30 rounded-lg p-8">
+                    <div class="flex flex-col items-center justify-center text-center py-12">
+                        <div class="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-shield-halved text-purple-400 text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-purple-400 mb-2">Permission Denied</h3>
+                        <p class="text-sm text-gray-400 mb-2">403 Forbidden</p>
+                        <p class="text-xs text-gray-500 mb-6 max-w-md">You don't have permission to access this resource.</p>
+                        <div class="flex items-center space-x-3">
+                            <button class="px-5 py-2 bg-purple-500/20 hover:bg-purple-500/30 text-purple-400 font-medium rounded-lg transition-all flex items-center space-x-2">
+                                <i class="fa-solid fa-user-shield"></i>
+                                <span>Check Permissions</span>
+                            </button>
+                            <button class="px-5 py-2 bg-dark-border hover:bg-gray-700 text-gray-300 font-medium rounded-lg transition-all">
+                                Contact Admin
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="no-environment-state" class="bg-dark-surface border border-dark-border rounded-lg p-8">
+                    <div class="flex flex-col items-center justify-center text-center py-12">
+                        <div class="w-16 h-16 bg-gray-700/30 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-layer-group text-gray-500 text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-300 mb-2">No Environments</h3>
+                        <p class="text-sm text-gray-500 mb-6 max-w-xs">Create an environment to manage variables across different setups.</p>
+                        <button class="px-6 py-2.5 bg-accent-teal hover:bg-teal-400 text-dark-bg font-semibold rounded-lg transition-all flex items-center space-x-2">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>Create Environment</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="ssl-error-state" class="bg-dark-surface border border-yellow-500/30 rounded-lg p-8">
+                    <div class="flex flex-col items-center justify-center text-center py-12">
+                        <div class="w-16 h-16 bg-yellow-500/20 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-certificate text-yellow-400 text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-yellow-400 mb-2">SSL Certificate Error</h3>
+                        <p class="text-sm text-gray-400 mb-2">Certificate verification failed</p>
+                        <p class="text-xs text-gray-500 mb-6 max-w-md">The SSL certificate for this server is invalid or expired.</p>
+                        <div class="flex items-center space-x-3">
+                            <button class="px-5 py-2 bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-400 font-medium rounded-lg transition-all flex items-center space-x-2">
+                                <i class="fa-solid fa-shield-xmark"></i>
+                                <span>Disable Verification</span>
+                            </button>
+                            <button class="px-5 py-2 bg-dark-border hover:bg-gray-700 text-gray-300 font-medium rounded-lg transition-all">
+                                View Certificate
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+
+        <footer id="footer" class="border-t border-dark-border bg-dark-surface">
+            <div class="px-6 py-4 flex items-center justify-between text-sm">
+                <div class="flex items-center space-x-6 text-gray-500">
+                    <span>Version 1.0.0</span>
+                    <a href="#" class="hover:text-accent-blue transition-colors">Release Notes</a>
+                    <a href="#" class="hover:text-accent-blue transition-colors">Privacy</a>
+                </div>
+                <div class="flex items-center space-x-4 text-gray-500">
+                    <a href="#" class="hover:text-accent-blue transition-colors">
+                        <i class="fa-brands fa-github text-lg"></i>
+                    </a>
+                    <a href="#" class="hover:text-accent-blue transition-colors">
+                        <i class="fa-brands fa-twitter text-lg"></i>
+                    </a>
+                    <a href="#" class="hover:text-accent-blue transition-colors">
+                        <i class="fa-brands fa-discord text-lg"></i>
+                    </a>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+</div>
+
+</body>
+</html>
