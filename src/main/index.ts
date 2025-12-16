@@ -1,8 +1,6 @@
 import { app, BrowserWindow, ipcMain, shell, Menu, nativeTheme } from 'electron';
 import { join } from 'path';
-
-// Database imports will be added when implementing the database layer
-// import { initDatabase } from './database';
+import { registerDatabaseIpcHandlers, cleanupDatabase } from './database/ipc-handlers';
 
 let mainWindow: BrowserWindow | null = null;
 
@@ -347,10 +345,6 @@ function registerIpcHandlers(): void {
     shell.showItemInFolder(path);
   });
 
-  // Database operations will be added here
-  // ipcMain.handle('db:query', async (_event, query: string, params: any[]) => {
-  //   return await database.query(query, params);
-  // });
 }
 
 // App lifecycle
@@ -362,6 +356,9 @@ app.whenReady().then(() => {
 
   // Register IPC handlers
   registerIpcHandlers();
+
+  // Register database IPC handlers
+  registerDatabaseIpcHandlers();
 
   // Create menu
   createMenu();
@@ -382,6 +379,11 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
   }
+});
+
+// Cleanup database on quit
+app.on('before-quit', () => {
+  cleanupDatabase();
 });
 
 // Handle second instance (single instance lock)

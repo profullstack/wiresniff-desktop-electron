@@ -14,6 +14,14 @@ export default {
         'dark-border': '#2d3139',
         'accent-blue': '#00d9ff',
         'accent-teal': '#14b8a6',
+        'accent-purple': '#8b5cf6',
+        'accent-orange': '#f97316',
+        'accent-pink': '#ec4899',
+        // Semantic colors
+        'success': '#22c55e',
+        'warning': '#eab308',
+        'error': '#ef4444',
+        'info': '#3b82f6',
         // Alternative naming from mockups
         'ws-dark': '#1a1d23',
         'ws-darker': '#13151a',

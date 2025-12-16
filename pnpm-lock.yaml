@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@stripe/stripe-js':
+        specifier: ^8.6.0
+        version: 8.6.0
       '@supabase/supabase-js':
         specifier: ^2.39.0
         version: 2.88.0
@@ -35,6 +38,9 @@ importers:
       monaco-editor:
         specifier: ^0.45.0
         version: 0.45.0
+      nanoid:
+        specifier: ^5.1.6
+        version: 5.1.6
       react:
         specifier: ^18.2.0
         version: 18.3.1
@@ -94,7 +100,7 @@ importers:
         specifier: ^10.4.16
         version: 10.4.23(postcss@8.5.6)
       electron:
-        specifier: ^39.0.0
+        specifier: ^39.2.7
         version: 39.2.7
       electron-builder:
         specifier: ^24.9.1
@@ -806,6 +812,10 @@ packages:
   '@sindresorhus/is@4.6.0':
     resolution: {integrity: sha512-t09vSN3MdfsyCHoFcTRCH/iUtG7OJ0CsjzB8cjAmKc/va/kIgeDI/TxsigdncE/4be734m0cvIYwNaV4i2XqAw==}
     engines: {node: '>=10'}
+
+  '@stripe/stripe-js@8.6.0':
+    resolution: {integrity: sha512-EB0/GGgs4hfezzkiMkinlRgWtjz8fSdwVQhwYS7Sg/RQrSvuNOz+ssPjD+lAzqaYTCB0zlbrt0fcqVziLJrufQ==}
+    engines: {node: '>=12.16'}
 
   '@supabase/auth-js@2.88.0':
     resolution: {integrity: sha512-r/tlKD1Sv5w5AGmxVdBK17KwVkGOHMjihqw+HeW7Qsyes5ajLeyjL0M7jXZom1+NW4yINacKqOR9gqGmWzW9eA==}
@@ -2376,6 +2386,11 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
+  nanoid@5.1.6:
+    resolution: {integrity: sha512-c7+7RQ+dMB5dPwwCp4ee1/iV/q2P6aK1mTZcfr1BTuVlyW9hJYiMPybJCcnBlQtuSmTIWNeazm/zqNoZSSElBg==}
+    engines: {node: ^18 || >=20}
+    hasBin: true
+
   napi-build-utils@2.0.0:
     resolution: {integrity: sha512-GEbrYkbfF7MoNaoh2iGG84Mnf/WZfB0GdGEsM8wz7Expx/LlWf5U8t9nvJKXSp3qr5IsEbK04cBGhol/KwOsWA==}
 
@@ -3841,6 +3856,8 @@ snapshots:
   '@sinclair/typebox@0.27.8': {}
 
   '@sindresorhus/is@4.6.0': {}
+
+  '@stripe/stripe-js@8.6.0': {}
 
   '@supabase/auth-js@2.88.0':
     dependencies:
@@ -5804,6 +5821,8 @@ snapshots:
       thenify-all: 1.6.0
 
   nanoid@3.3.11: {}
+
+  nanoid@5.1.6: {}
 
   napi-build-utils@2.0.0: {}
 

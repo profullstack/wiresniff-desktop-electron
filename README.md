@@ -36,6 +36,96 @@ A powerful, cross-platform API client for REST, WebSocket, GraphQL, and Server-S
 - Node.js 24+
 - pnpm 8+
 
+### External Tools (Optional - for Network Inspection)
+
+WireSniff uses external tools for advanced network traffic inspection. These are optional but required for the Network Inspector feature.
+
+#### tshark (Wireshark CLI)
+
+**macOS:**
+```bash
+brew install wireshark
+```
+
+**Ubuntu/Debian:**
+```bash
+sudo apt update
+sudo apt install tshark
+# Allow non-root users to capture packets (optional)
+sudo dpkg-reconfigure wireshark-common
+sudo usermod -aG wireshark $USER
+```
+
+**Fedora/RHEL:**
+```bash
+sudo dnf install wireshark-cli
+```
+
+**Windows:**
+Download and install Wireshark from [wireshark.org](https://www.wireshark.org/download.html). Ensure `tshark.exe` is in your PATH.
+
+#### mitmproxy
+
+**macOS:**
+```bash
+brew install mitmproxy
+```
+
+**Ubuntu/Debian:**
+```bash
+sudo apt install mitmproxy
+# Or via pip for latest version:
+pip install mitmproxy
+```
+
+**Fedora/RHEL:**
+```bash
+sudo dnf install mitmproxy
+# Or via pip:
+pip install mitmproxy
+```
+
+**Windows:**
+```bash
+pip install mitmproxy
+# Or download installer from https://mitmproxy.org/
+```
+
+#### websocat
+
+**macOS:**
+```bash
+brew install websocat
+```
+
+**Ubuntu/Debian:**
+```bash
+# Via cargo (Rust package manager)
+cargo install websocat
+# Or download binary from GitHub releases
+```
+
+**Fedora/RHEL:**
+```bash
+cargo install websocat
+```
+
+**Windows:**
+Download the binary from [GitHub Releases](https://github.com/vi/websocat/releases) and add to PATH.
+
+#### Verify Installation
+
+```bash
+# Check tshark
+tshark --version
+
+# Check mitmproxy
+mitmproxy --version
+
+# Check websocat
+websocat --version
+```
+
 ### Installation
 
 1. Clone the repository:
